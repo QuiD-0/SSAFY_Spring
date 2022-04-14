@@ -9,11 +9,11 @@ public class SpringDiApplication {
 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("coffee.xml");
 
-        Coffee coffee1 = applicationContext.getBean("coffee1", Coffee.class);
-        coffee1.info();
+        Coffee coffee = applicationContext.getBean("coffee1", Coffee.class);
+        coffee.info();
 
-        Starbucks starbucks = applicationContext.getBean("starbucks", Starbucks.class);
-        starbucks.info();
+        CoffeeShop shop = applicationContext.getBean("starbucks", Starbucks.class);
+        shop.info();
     }
 
 
