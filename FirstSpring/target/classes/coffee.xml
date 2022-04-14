@@ -3,8 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="c1" class="com.coffee3.Americano"/>
-<bean id="c2" class="com.coffee3.CaffeLatte"/>
+	<bean id="coffee1" class="com.coffee3.CaffeLatte"></bean>
+	<bean id="coffee2" class="com.coffee3.Americano"></bean>
+
 
 
 </beans>
