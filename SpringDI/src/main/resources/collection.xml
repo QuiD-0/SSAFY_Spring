@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="collection" class="DI.Collection.MyCollectionImp">
+        <property name="array">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </array>
+        </property>
+        <property name="list">
+            <array>
+                <value>red</value>
+                <value>blue</value>
+                <value>green</value>
+            </array>
+        </property>
+        <property name="set">
+            <set>
+                <value>macBook</value>
+                <value>macStudio</value>
+                <value>macPro</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry>
+                    <key>
+                        <value>iPad</value>
+                    </key>
+                    <value>iPadOS</value>
+                </entry>
+                <entry>
+                    <key>
+                        <value>iPhone</value>
+                    </key>
+                    <value>IOS</value>
+                </entry>
+                <entry>
+                    <key>
+                        <value>Mac</value>
+                    </key>
+                    <value>OSX</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

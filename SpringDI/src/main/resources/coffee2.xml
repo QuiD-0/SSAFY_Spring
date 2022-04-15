@@ -5,22 +5,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <bean id="coffee1" class="DI.Config.CaffeLatte">
+    <bean id="coffee1" class="DI.Component.CaffeLatte">
         <constructor-arg name="price" value="6000"/>
         <constructor-arg name="origin" value="kenya"/>
     </bean>
-    <bean id="coffee2" class="DI.Config.Americano">
+    <bean id="coffee2" class="DI.Component.Americano">
         <constructor-arg name="price" value="5000"/>
         <constructor-arg name="origin" value="columbia"/>
     </bean>
-    <bean id="coffee3" class="DI.Config.CaffeLatte">
+    <bean id="coffee3" class="DI.Component.CaffeLatte">
         <constructor-arg name="price" value="6000"/>
         <constructor-arg name="origin" value="india"/>
     </bean>
-    <bean id="coffee4" class="DI.Config.Americano">
+    <bean id="coffee4" class="DI.Component.Americano">
         <constructor-arg name="price" value="4000"/>
         <constructor-arg name="origin" value="columbia"/>
     </bean>
-    <context:component-scan base-package="DI.Config"/>
+    <context:component-scan base-package="DI.Component"/>
 
 </beans>

@@ -1,18 +1,17 @@
 package DI.Config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Component
 public class CoffeeBean implements CoffeeShop {
 
-    @Autowired
-    @Qualifier("coffee4")
     Americano ame;
-    @Autowired
-    @Qualifier("coffee3")
     CaffeLatte lat;
+
+    public void setAme(Americano ame) {
+        this.ame = ame;
+    }
+
+    public void setLat(CaffeLatte lat) {
+        this.lat = lat;
+    }
 
     @Override
     public void info() {

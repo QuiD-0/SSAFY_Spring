@@ -1,22 +1,14 @@
 package DI.Config;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
 public class SpringDiApplication {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("coffee2.xml");
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(CoffeeConfig.class);
 
-        Starbucks coffeeShop = applicationContext.getBean("star", Starbucks.class);
+        CoffeeShop coffeeShop = applicationContext.getBean("getStar", CoffeeShop.class);
         coffeeShop.info();
-
-        CoffeeShop coffeeShop2 = applicationContext.getBean("coffeeBean", CoffeeShop.class);
-        coffeeShop2.info();
-
     }
-
-
 }
