@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean name="tiger1" class="DI.Animal.Tiger">
+        <constructor-arg name="name" value="티기"/>
+        <constructor-arg name="age" value="10"/>
+    </bean>
+    <bean name="lion1" class="DI.Animal.Lion">
+        <constructor-arg name="name" value="레온"/>
+        <constructor-arg name="age" value="12"/>
+    </bean>
+    <bean name="tiger2" class="DI.Animal.Tiger">
+        <constructor-arg name="name" value="레이"/>
+        <constructor-arg name="age" value="5"/>
+    </bean>
+    <bean name="lion2" class="DI.Animal.Lion">
+        <constructor-arg name="name" value="리만"/>
+        <constructor-arg name="age" value="3"/>
+    </bean>
+    <context:component-scan base-package="DI.Animal"/>
+</beans>
