@@ -3,8 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="coffee1" class="DI.SpringDI.CaffeLatte"/>
-	<bean id="coffee2" class="DI.SpringDI.Americano"/>
+	<bean id="coffee1" class="DI.SpringDI.CaffeLatte">
+		<constructor-arg name="price" value="6000"/>
+		<constructor-arg name="origin" value="kenya"/>
+	</bean>
+	<bean id="coffee2" class="DI.SpringDI.Americano">
+		<constructor-arg name="price" value="5000"/>
+		<constructor-arg name="origin" value="columbia"/>
+	</bean>
 	<bean id="starbucks" class="DI.SpringDI.Starbucks">
 		<constructor-arg name="ame" ref="coffee2"/>
 		<property name="lat" ref="coffee1"/>

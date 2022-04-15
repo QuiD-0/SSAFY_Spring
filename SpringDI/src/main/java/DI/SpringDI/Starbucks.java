@@ -1,7 +1,9 @@
 package DI.SpringDI;
 
-public class Starbucks implements CoffeeShop {
+import org.springframework.stereotype.Service;
 
+@Service
+public class Starbucks implements CoffeeShop {
     Americano ame;
     CaffeLatte lat;
 
