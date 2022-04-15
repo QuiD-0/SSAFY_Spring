@@ -21,10 +21,10 @@ public class BoardTracker {
 
     @After("execution(String read(*))")
     public void tarcking2(JoinPoint joinPoint){
-        System.out.println("before advice 시작");
+        System.out.println("after advice 시작");
         System.out.println("target :" + joinPoint.getTarget().getClass().getSimpleName());
         System.out.println("method :" + joinPoint.getSignature().getName());
         System.out.println("args :" + Arrays.toString(joinPoint.getArgs()));
-        System.out.println("before advice 종료");
+        System.out.println("after advice 종료");
     }
 }
