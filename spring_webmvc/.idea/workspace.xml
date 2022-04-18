@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="webmvc:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b02651aa-7b95-4946-8183-52e4c1962d51" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../SpringDI/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Board/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Board/BoardApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Board/BoardImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Board/BoardTracker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Car/Avante.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Car/Car.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Car/CarApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/AOP/Car/ColorTracker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Animal/Animal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Animal/AnimalApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Animal/Lion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Animal/LondonZoo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Animal/SeoulZoo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Animal/Tiger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Animal/Zoo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Annotation/Americano.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Annotation/CaffeLatte.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Annotation/Coffee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Annotation/CoffeeBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Annotation/CoffeeShop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Annotation/SpringDiApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Annotation/Starbucks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Collection/CollectionApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Collection/MyCollection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Collection/MyCollectionImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Component/Americano.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Component/CaffeLatte.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Component/Coffee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Component/CoffeeBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Component/CoffeeShop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Component/SpringDiApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Component/Starbucks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/Americano.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/CaffeLatte.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/Coffee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/CoffeeBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/CoffeeConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/CoffeeShop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/SpringDiApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/Config/Starbucks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/SpringDI/Americano.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/SpringDI/CaffeLatte.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/SpringDI/Coffee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/SpringDI/CoffeeBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/SpringDI/CoffeeShop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/SpringDI/SpringDiApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/java/DI/SpringDI/Starbucks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/resources/board.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/resources/car.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/resources/coffee.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/resources/coffee2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/resources/collection.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/main/resources/zoo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringDI/src/test/java/DI/SpringDI/SpringDiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/src/main/java/com/spring/mvc/mvc/MvcApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/src/test/java/com/spring/mvc/mvc/MvcApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="27xmIayysrwS0kYntKHVhKUMaa8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SpringMVC" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 9.0.56" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.56" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="webmvc:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="cc7995eb-c5aa-431a-90e3-26ee245813ad" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="64915" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="webmvc:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b02651aa-7b95-4946-8183-52e4c1962d51" name="Default Changelist" comment="" />
+      <created>1650270032596</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650270032596</updated>
+      <workItem from="1650270033882" duration="519000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
