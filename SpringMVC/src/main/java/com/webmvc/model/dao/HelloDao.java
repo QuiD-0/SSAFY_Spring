@@ -1,4 +1,4 @@
-package com.ssafy.webmvc.model.dao;
+package com.webmvc.model.dao;
 
 public interface HelloDao {
 

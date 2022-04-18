@@ -1,4 +1,4 @@
-package com.ssafy.webmvc.model;
+package com.webmvc.model;
 
 public class HelloDto {
 

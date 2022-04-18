@@ -1,4 +1,4 @@
-package com.ssafy.webmvc.model;
+package com.webmvc.model;
 
 import java.util.List;
 

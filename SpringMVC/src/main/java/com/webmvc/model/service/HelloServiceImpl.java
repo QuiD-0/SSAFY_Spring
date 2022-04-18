@@ -1,7 +1,7 @@
-package com.ssafy.webmvc.model.service;
+package com.webmvc.model.service;
 
-import com.ssafy.webmvc.model.HelloDto;
-import com.ssafy.webmvc.model.dao.HelloDao;
+import com.webmvc.model.HelloDto;
+import com.webmvc.model.dao.HelloDao;
 
 public class HelloServiceImpl implements HelloService {
 

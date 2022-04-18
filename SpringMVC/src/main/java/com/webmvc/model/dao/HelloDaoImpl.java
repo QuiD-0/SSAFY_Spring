@@ -1,4 +1,4 @@
-package com.ssafy.webmvc.model.dao;
+package com.webmvc.model.dao;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
