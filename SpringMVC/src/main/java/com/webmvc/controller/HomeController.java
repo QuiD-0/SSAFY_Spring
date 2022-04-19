@@ -16,9 +16,9 @@ public class HomeController {
     }
 
     @GetMapping(value = "/test")
-    public String test(Model model){
-        model.addAttribute("city","seattle");
-        model.addAttribute("name","Tom");
+    public String test(Model model) {
+        model.addAttribute("city", "seattle");
+        model.addAttribute("name", "Tom");
         return "home";
     }
 }
