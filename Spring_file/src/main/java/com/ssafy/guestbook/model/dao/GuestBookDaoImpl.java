@@ -72,11 +72,11 @@ public class GuestBookDaoImpl implements GuestBookDao {
 					pstmt.setString(++idx, fileInfo.getSaveFile());
 				}
 				pstmt.executeUpdate();
-				conn.commit();
+				conn.commit(); //커밋
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-			conn.rollback();
+			conn.rollback(); // 롤백
 		} finally {
 			dbUtil.close(rs, pstmt, conn);
 		}
