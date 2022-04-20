@@ -11,9 +11,8 @@
 <body>
 <div align="center">
 <h3>Spring Web MVC</h3>
-<a href="${root}/hello">1. Hello Spring</a><br>
-<a href="${root}/hellomvc">2. Hello Spring Web MVC</a><br>
-<a href="${root}/parameter">3. parameter</a><br>
+    <a href="/list">Todo 보기</a>
+    <a href="/write">Todo 작성하기</a>
 </div>
 </body>
 </html>

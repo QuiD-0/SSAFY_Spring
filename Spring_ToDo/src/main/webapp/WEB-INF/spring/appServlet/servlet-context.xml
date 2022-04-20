@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.spring_todo" />
+	<context:component-scan base-package="com.spring_todo.home,com.spring_todo.todo" />
 	
 	
 	
