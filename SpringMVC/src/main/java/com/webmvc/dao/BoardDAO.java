@@ -16,4 +16,5 @@ public interface BoardDAO {
 
     public void countUp(String num);//조회수 증가
 
+    ArrayList<Board> search(String word, String type);
 }

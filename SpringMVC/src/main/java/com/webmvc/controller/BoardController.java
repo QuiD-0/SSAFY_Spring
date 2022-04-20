@@ -8,11 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 
 //FrontController에게서 요청을 넘겨 받아 Service한테 작업을 넘김
@@ -53,11 +49,13 @@ public class BoardController {
         return "redirect:list";
 
     }
+
     @GetMapping("/delete")
     public String delete(String num) {
         boardService.delete(num);
         return "redirect:list";
     }
+
     @GetMapping("/loginForm")
     public String loginForm(HttpSession httpSession) {// 로그인화면
         if (httpSession.getAttribute("id") == null) {
@@ -73,9 +71,10 @@ public class BoardController {
         // 세션 얻기
         httpSession.setAttribute("id", id);
 
-       return "redirect:list";
+        return "redirect:list";
 
     }
+
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.setAttribute("id", null);
@@ -83,12 +82,12 @@ public class BoardController {
         return "redirect:list";
     }
 
-    public void index(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            response.sendRedirect("list.bod");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @GetMapping("/search")
+    public String search(String word,String condition,Model model){
+        ArrayList<Board> list = boardService.search(word,condition);// data 받음
+        model.addAttribute("list", list);// request에 데이터 저장****
+        return "list";
     }
+
 
 }

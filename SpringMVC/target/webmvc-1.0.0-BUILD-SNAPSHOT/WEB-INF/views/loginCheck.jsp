@@ -16,7 +16,7 @@
 
 		<c:if test="${!empty id}">
 			${id }님 로그인 되었습니다.
-			<a href="logOut">로그아웃</a>
+			<a href="/logout">로그아웃</a>
 	<br>
 		</c:if>
 	</div>

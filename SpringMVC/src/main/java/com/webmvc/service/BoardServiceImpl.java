@@ -38,4 +38,9 @@ public class BoardServiceImpl implements BoardService {
         dao.delete(num);
     }
 
+    @Override
+    public ArrayList<Board> search(String word, String type) {
+        return dao.search(word, type);
+    }
+
 }

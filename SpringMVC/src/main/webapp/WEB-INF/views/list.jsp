@@ -22,6 +22,16 @@
 	<h1>JSP 게시판</h1>
 	<jsp:include page="loginCheck.jsp" />
 
+		<div>
+			<form action="/search" method="get">
+				<select name="condition">
+					<option value="title">제목</option>
+					<option value="name">이름</option>
+				</select>
+				<input type="text" name="word">
+				<button type="submit" class="btn btn-primary">검색</button>
+			</form>
+		</div>
 	<table class="table table-striped">
 		<thead>
 			<tr>

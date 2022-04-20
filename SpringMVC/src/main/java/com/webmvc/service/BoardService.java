@@ -13,4 +13,6 @@ public interface BoardService {
     public void insert(Board b);//새글 등록
 
     public void delete(String num);//글 삭제
+
+    ArrayList<Board> search(String word, String type);
 }

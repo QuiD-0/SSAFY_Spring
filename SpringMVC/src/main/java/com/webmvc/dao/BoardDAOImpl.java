@@ -135,4 +135,30 @@ public class BoardDAOImpl implements BoardDAO {
         }
     }
 
+    @Override
+    public ArrayList<Board> search(String word,String type) {
+        try {
+            list.clear();
+
+            Connection con = util.getConnection();
+            Statement stat = con.createStatement();
+            String q = "select num, name, wdate, title, count from board where "+type+" like '%"+word+"%' order by num desc";
+            ResultSet rs = stat.executeQuery(q);
+            System.out.println(q);
+            while (rs.next()) {
+                String num = rs.getString(1);
+                String name = rs.getString(2);
+                String wdate = rs.getString(3);
+                String title = rs.getString(4);
+                String count = rs.getString(5);
+                Board b = new Board(num, null, name, wdate, title, null, count);
+                list.add(b);
+            }
+            con.close();// pool에 반납
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;// ->service로 감
+    }
+
 }
