@@ -1,8 +1,8 @@
 package com.webmvc.service;
 
 import com.webmvc.dao.BoardDAO;
-import com.webmvc.dao.BoardDAOImpl;
 import com.webmvc.vo.Board;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,11 +13,8 @@ import java.util.ArrayList;
 @Service
 public class BoardServiceImpl implements BoardService {
 
+    @Autowired
     BoardDAO dao;
-
-    public BoardServiceImpl() {
-        dao = new BoardDAOImpl();
-    }
 
     @Override
     public ArrayList<Board> selectAll() {

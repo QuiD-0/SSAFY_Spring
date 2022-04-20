@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div align="center">
-<h3>${hello.message}</h3>
-</div>
+<h1>test</h1>
+city: ${city }
 </body>
 </html>

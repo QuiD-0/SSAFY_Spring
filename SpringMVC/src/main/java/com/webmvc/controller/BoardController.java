@@ -5,6 +5,8 @@ import com.webmvc.service.BoardServiceImpl;
 import com.webmvc.vo.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -21,19 +23,13 @@ public class BoardController {
     BoardService service;// interface type
 
     // request < session < application
-    public void list(HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping("/list")
+    public String list(Model model) {
         ArrayList<Board> list = service.selectAll();// data 받음
-        request.setAttribute("list", list);// request에 데이터 저장****
-
-        // view로 넘어가기(forward 방식)
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/list.jsp");
-        try {
-            dispatcher.forward(request, response);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        model.addAttribute("list", list);// request에 데이터 저장****
+        return "list";
     }
+
 
     public void read(HttpServletRequest request, HttpServletResponse response) {
         String num = request.getParameter("num");
