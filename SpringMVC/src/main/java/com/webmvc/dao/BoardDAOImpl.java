@@ -139,12 +139,10 @@ public class BoardDAOImpl implements BoardDAO {
     public ArrayList<Board> search(String word,String type) {
         try {
             list.clear();
-
             Connection con = util.getConnection();
             Statement stat = con.createStatement();
             String q = "select num, name, wdate, title, count from board where "+type+" like '%"+word+"%' order by num desc";
             ResultSet rs = stat.executeQuery(q);
-            System.out.println(q);
             while (rs.next()) {
                 String num = rs.getString(1);
                 String name = rs.getString(2);
