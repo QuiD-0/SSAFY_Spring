@@ -34,12 +34,8 @@ public class BoardController {
     }
 
     @GetMapping("/insertForm")
-    public String insertForm(Model model, HttpSession httpSession) {
-        if (httpSession.getAttribute("id") == null) {
-            return "loginForm";
-        } else {
-            return "insert";
-        }
+    public String insertForm() {
+        return "insert";
 
     }
 
