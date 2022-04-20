@@ -1,12 +1,12 @@
 package com.webmvc.controller;
 
 import com.webmvc.service.BoardService;
-import com.webmvc.service.BoardServiceImpl;
 import com.webmvc.vo.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -20,128 +20,67 @@ import java.util.ArrayList;
 public class BoardController {
 
     @Autowired
-    BoardService service;// interface type
+    BoardService boardService;// interface type
 
     // request < session < application
     @GetMapping("/list")
     public String list(Model model) {
-        ArrayList<Board> list = service.selectAll();// data 받음
+        ArrayList<Board> list = boardService.selectAll();// data 받음
         model.addAttribute("list", list);// request에 데이터 저장****
         return "list";
     }
 
-
-    public void read(HttpServletRequest request, HttpServletResponse response) {
-        String num = request.getParameter("num");
-        Board b = service.selectOne(num);
-        request.setAttribute("b", b);
-
-        // view로 넘어가기(forward 방식)
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/read.jsp");
-        try {
-            dispatcher.forward(request, response);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @GetMapping("/read")
+    public String read(String num, Model model) {
+        Board b = boardService.selectOne(num);
+        model.addAttribute("b", b);
+        return "read";
     }
 
-    public void insertForm(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession ses = request.getSession();
-        System.out.println(request.getRequestURI());
-        if (ses.getAttribute("id") == null) {
-            ses.setAttribute("cpage", request.getRequestURI());
-            loginForm(request, response);
+    @GetMapping("/insertForm")
+    public String insertForm(Model model, HttpSession httpSession) {
+        if (httpSession.getAttribute("id") == null) {
+            return "loginForm";
         } else {
-            // view로 넘어가기(forward 방식)
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/insertForm.jsp");
-            try {
-                dispatcher.forward(request, response);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            return "insert";
         }
 
     }
 
-    public void insertProcess(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            //request.setCharacterEncoding("utf-8");front controller로 move
-
-            // db에 insert
-            String pass = request.getParameter("pass");
-            String title = request.getParameter("title");
-            String content = request.getParameter("content");
-            String name = request.getParameter("name");
-
-            service.insert(new Board(null, pass, name, null, title, content, null));
-            HttpSession ses = request.getSession();
-
-            response.sendRedirect("list.bod");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @PostMapping("/insertProcess")
+    public String insertProcess(Board board) {
+        boardService.insert(board);
+        return "redirect:list";
 
     }
-
-    public void delete(HttpServletRequest request, HttpServletResponse response) {
-        String num = request.getParameter("num");
-        service.delete(num);
-
-        // 초기화면으로 redirect
-        try {
-            response.sendRedirect("list.bod");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    @GetMapping("/delete")
+    public String delete(String num) {
+        boardService.delete(num);
+        return "redirect:list";
     }
-
-    public void loginForm(HttpServletRequest request, HttpServletResponse response) {// 로그인화면
-
-        // view로 넘어가기(forward 방식)
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/loginForm.jsp");
-        try {
-            dispatcher.forward(request, response);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    @GetMapping("/loginForm")
+    public String loginForm(HttpSession httpSession) {// 로그인화면
+        if (httpSession.getAttribute("id") == null) {
+            return "loginForm";
+        } else {
+            return "list";
         }
     }
 
-    // 로그인 정보(id)를 세션에 저장함
-    public void loginProcess(HttpServletRequest request, HttpServletResponse response) {
-        String id = request.getParameter("id");
+    @PostMapping("/loginProcess")
+    public String loginProcess(String id, HttpSession httpSession) {
 
         // 세션 얻기
-        HttpSession session = request.getSession();
-        session.setAttribute("id", id);
+        httpSession.setAttribute("id", id);
 
-        // 초기화면으로 redirect
-        String url = (String) session.getAttribute("cpage");
-        if (url == null)
-            url = "list.bod";
-        // 초기화면으로 redirect
-        try {
-            response.sendRedirect(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       return "redirect:list";
 
     }
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.setAttribute("id", null);
 
-    public void logout(HttpServletRequest request, HttpServletResponse response) {
-        // 세션 얻기
-        HttpSession session = request.getSession();
-        session.setAttribute("id", null);
-
-        // 초기화면으로 redirect
-        try {
-            response.sendRedirect("list.bod");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return "redirect:list";
     }
 
     public void index(HttpServletRequest request, HttpServletResponse response) {

@@ -17,9 +17,9 @@
 </head>
 <body>
 	<div class="container text-center">
-		<img src="image/f3.jpg" class="rounded-circle"/>
+		<img src="/resources/image/f3.jpg" class="rounded-circle"/>
 		<h1>Login</h1>
-		<form method="post" action="loginProcess.bod">
+		<form method="post" action="loginProcess">
 			<div class="form-group text-left">
 				<label for="id">ID:</label>
 				<input type="text" class="form-control"	name="id">

@@ -47,7 +47,6 @@
 			</TR>
 		</TABLE>
 	 <a href="list">전체화면</a>
-		<a href="/delete">전체화면</a>
 		<br><br>
 
 	</div>

@@ -1,19 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 2022-04-18
-  Time: 오후 5:45
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
-    <title>Title</title>
+	<title>Home</title>
 </head>
 <body>
-<p>
-    city: ${city}
-    name: ${name}
-</p>
+<h1>
+	Hello world!  
+</h1>
+
+<P>  city: ${city } </P>
+<P>  name: ${name } </P>
+<P>  age: ${age } </P>
 </body>
 </html>
