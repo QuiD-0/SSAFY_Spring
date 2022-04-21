@@ -140,7 +140,7 @@ public class TodoRepositoryImpl implements TodoRepository {
     @Override
     public void deleteAll() {
         try {
-            String q = "delete from board";
+            String q = "delete from todolist";
             Connection con = util.getConnection();// pool에서 한개 빌려옴
             PreparedStatement stat = con.prepareStatement(q);
 

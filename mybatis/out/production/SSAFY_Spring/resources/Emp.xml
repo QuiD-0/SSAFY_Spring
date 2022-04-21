@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Emp">
+
+    <select id="selectAll" resultType="Object">
+        select *
+        from emp
+    </select>
+
+    <select id="join" resultType="Customer">
+        select empid num, fname name, deptname address
+        from emp
+                 join dept using (deptid)
+        where empid = 100
+    </select>
+
+    <select id="selectIf" parameterType="String" resultType="Customer">
+        select empid num, fname name,deptid address from emp where deptid=50
+        <if test="fname != null">
+            and fname like concat('%',#{fname},'%')
+        </if>
+    </select>
+
+    <select id="selectIf2" parameterType="String" resultType="Customer">
+        select empid num, fname name,deptid address from emp
+        <if test="deptid !=null">
+            where deptid = #{deptid}
+        </if>
+        <if test="job !=null">
+            where jobid = #{job}
+        </if>
+    </select>
+
+    <select id="forEach" resultType="Customer">
+        select empid num ,fname name,deptid address from emp where deptid in (
+            <foreach collection="array" item="one" separator=",">
+                #{one}
+            </foreach>
+            )
+    </select>
+</mapper>

@@ -5,6 +5,12 @@
 
 <mapper namespace="Customer">
 
+    <resultMap id="CResult" type="Customer">
+        <result property="num" column="empid"/>
+        <result property="name" column="fname"/>
+        <result property="address" column="deptname"/>
+
+    </resultMap>
     <select id="selectAll" resultType="Customer">
         select *
         from customer
@@ -19,4 +25,16 @@
     <insert id="insert" parameterType="mybatis.Customer">
         insert into customer (num,name,address) values (#{num},#{name},#{address})
     </insert>
+
+    <delete id="delete" parameterType="String">
+        delete from customer where num = #{num}
+    </delete>
+
+    <update id="update" parameterType="mybatis.Customer">
+        update customer set address = #{address} where num = #{num}
+    </update>
+
+    <select id="join" resultMap="CResult">
+        select empid,fname,deptname from emp join dept using (deptid)
+    </select>
 </mapper>

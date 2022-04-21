@@ -23,6 +23,8 @@
     <!-- 3. mapper file: table&object mapping -->
     <mappers>
         <mapper resource="resources/Customer.xml"/>
+        <mapper resource="resources/Emp.xml"/>
+        <mapper resource="resources/Board.xml"/>
     </mappers>
 
 </configuration>

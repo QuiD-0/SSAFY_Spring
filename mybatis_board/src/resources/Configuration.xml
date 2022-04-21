@@ -4,7 +4,7 @@
     <!-- 1. typeAliases -->
     <!--vo-->
     <typeAliases>
-        <typeAlias alias="Customer" type="mybatis.Customer"/>
+        <typeAlias alias="Board" type="doamin.Board"/>
     </typeAliases>
 
     <!-- 2. db setting -->
@@ -22,8 +22,8 @@
 
     <!-- 3. mapper file: table&object mapping -->
     <mappers>
-        <mapper resource="resources/Customer.xml"/>
-        <mapper resource="resources/Emp.xml"/>
+        <mapper resource="resources/Board.xml"/>
+        <mapper resource="resources/Todo.xml"/>
     </mappers>
 
 </configuration>
