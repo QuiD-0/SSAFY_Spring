@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 
 @Service
@@ -37,8 +39,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public ArrayList<Board> search(String word, String type) {
-        return mapper.search(word, type);
+    public ArrayList<Board> search(String word, String condition) {
+        HashMap map = new HashMap();
+        map.put("word",word);
+        map.put("condition",condition);
+        return mapper.search(map);
     }
 
 }

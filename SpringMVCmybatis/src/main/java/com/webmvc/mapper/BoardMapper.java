@@ -4,6 +4,7 @@ import com.webmvc.vo.Board;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 //Service를 위한 인터페이스
 
@@ -19,4 +20,6 @@ public interface BoardMapper {
     public void countUp(String num);//조회수 증가
 
     ArrayList<Board> search(String word, String type);
+
+    ArrayList<Board> search(HashMap map);
 }

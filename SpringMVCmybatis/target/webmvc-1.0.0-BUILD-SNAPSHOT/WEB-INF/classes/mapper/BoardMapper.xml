@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Board">
+<mapper namespace="com.webmvc.mapper.BoardMapper">
 
     <select id="selectAll" resultType="Board">
         select num, name, wdate, title, count from board order by num desc
@@ -29,8 +29,8 @@
         update board set count = count + 1 where num = #{num}
     </update>
 
-    <select id="search" parameterType="Map">
-        select num, name, wdate, title, count from board where #{type} like concat('%',#{word},'%') order by num desc
+    <select id="search" parameterType="Map" resultType="Board">
+        select num, name, wdate, title, count from board where #{type} like concat('%','#{word}','%') order by num desc
     </select>
 
 
