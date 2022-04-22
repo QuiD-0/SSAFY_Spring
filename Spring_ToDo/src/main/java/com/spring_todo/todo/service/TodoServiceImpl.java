@@ -1,7 +1,7 @@
 package com.spring_todo.todo.service;
 
 import com.spring_todo.todo.domain.Todo;
-import com.spring_todo.todo.repository.TodoRepository;
+import com.spring_todo.todo.mapper.TodoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,41 +10,41 @@ import java.util.List;
 @Service
 public class TodoServiceImpl implements TodoService {
     @Autowired
-    TodoRepository todoRepository;
+    TodoMapper todoMapper;
 
     @Override
     public List<com.spring_todo.todo.domain.Todo> FindAll() {
-        return todoRepository.selectAll();
+        return todoMapper.selectAll();
     }
 
     @Override
     public List<Todo> findById(String id) {
-        return todoRepository.selectsById(id);
+        return todoMapper.selectsById(id);
     }
 
     @Override
     public Todo findOneByNum(String num) {
-        return todoRepository.selectOne(num);
+        return todoMapper.selectOne(num);
     }
 
 
     @Override
     public void write(Todo todo) {
-        todoRepository.insert(todo);
+        todoMapper.insert(todo);
     }
 
     @Override
     public void remove(String num) {
-        todoRepository.delete(num);
+        todoMapper.delete(num);
     }
 
     @Override
     public void removeAll() {
-        todoRepository.deleteAll();
+        todoMapper.deleteAll();
     }
 
     @Override
     public void done(String num) {
-        todoRepository.done(num);
+        todoMapper.done(num);
     }
 }

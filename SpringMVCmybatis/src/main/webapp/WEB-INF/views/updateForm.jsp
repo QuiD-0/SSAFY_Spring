@@ -18,20 +18,22 @@
 <div class="container text-center">
     <img src="/resources/image/f5.jpg"/>
     <h1>새글쓰기</h1>
-    <form action="/insertProcess" method="post">
+    <form action="/updateProcess" method="post">
         <div class="form-group text-left">
-            <label for="title">제 목:</label> <input type="text" class="form-control" name="title">
-        </div>
-
-        <div class="form-group text-left">
-            <label for="pw">패스워드:</label> <input type="pass" class="form-control" name="pass">
+            <label for="title">제 목:</label> <input type="text" class="form-control" name="title" value="${board.title}">
         </div>
         <div class="form-group text-left">
-            <label for="name">이 름:</label> <input type="name" class="form-control" name="name">
+            <label for="pw">패스워드:</label> <input type="pass" class="form-control" name="pass" value="${board.pass}">
+        </div>
+        <input type="hidden" class="form-control" name="num" value=${board.num}>
+        <input type="hidden" class="form-control" name="count" value=${board.count}>
+        <input type="hidden" class="form-control" name="wdate" value=${board.wdate}>
+        <div class="form-group text-left">
+            <label for="name">이 름:</label> <input type="name" class="form-control" name="name" value="${board.name}">
         </div>
         <div class="form-group text-left">
             <label for="comment">내 용:</label>
-            <textarea class="form-control" rows="5" name="content"></textarea>
+            <textarea class="form-control" rows="5" name="content">${board.content}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

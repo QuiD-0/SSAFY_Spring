@@ -64,11 +64,11 @@ public class BoardController {
     }
 
     @PostMapping("/loginProcess")
-    public String loginProcess(String id, HttpSession httpSession) {
-
-        // 세션 얻기
-        httpSession.setAttribute("id", id);
-
+    public String loginProcess(String id,String pw, HttpSession httpSession) {
+        // db체크
+        if(boardService.checkPW(id,pw)!=0){
+            httpSession.setAttribute("id", id);
+        }
         return "redirect:list";
 
     }
@@ -86,6 +86,22 @@ public class BoardController {
         model.addAttribute("list", list);// request에 데이터 저장****
         return "list";
     }
+
+    @GetMapping("/update")
+    public String update(String num,Model model) {
+        Board b = boardService.selectOne(num);
+        model.addAttribute("board",b);
+        return "updateForm";
+    }
+
+    @PostMapping("/updateProcess")
+    public String uProc(Board board, Model model){
+        boardService.update(board);
+        model.addAttribute("num",board.getNum());
+        return "redirect:read";
+    }
+
+
 
     @GetMapping("/test")
     public String test(){

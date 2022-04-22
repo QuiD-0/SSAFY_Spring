@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring_todo.todo.mapper.TodoMapper">
+
+    <select id="selectAll" resultType="Todo">
+        select *
+        from todolist
+        order by num asc
+    </select>
+
+    <select id="selectOne" resultType="Todo" parameterType="String">
+        select *
+        from todolist
+        where num = #{num}
+
+    </select>
+
+    <insert id="insert" parameterType="Todo">
+        INSERT INTO todolist (`content`, `id`, `sdate`, `edate`, `done`)
+        VALUES (#{content}, #{id}, sysdate(), #{edate}, 'N');
+    </insert>
+
+    <delete id="delete" parameterType="String">
+        delete
+        from todolist
+        where num = #{num}
+    </delete>
+
+    <delete id="deleteAll" parameterType="String">
+        delete
+        from todolist
+    </delete>
+
+    <update id="done" parameterType="String">
+        update todolist set done = 'Y' where num =  #{num}
+    </update>
+
+    <select id="selectsById" parameterType="String" resultType="Todo">
+        select *
+        from todolist
+        where id like concat('%', #{id}, '%')
+        order by num asc
+    </select>
+
+
+</mapper>

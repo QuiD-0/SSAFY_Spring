@@ -22,4 +22,8 @@ public interface BoardMapper {
     ArrayList<Board> search(HashMap map);
 
     void test();
+
+    void update(Board board);
+
+    int checkPass(HashMap map);
 }

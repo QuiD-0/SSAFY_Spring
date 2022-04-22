@@ -16,5 +16,9 @@ public interface BoardService {
 
     ArrayList<Board> search(String word, String type);
 
+    void update(Board board);
+
     void test();
+
+    int checkPW(String id, String pw);
 }

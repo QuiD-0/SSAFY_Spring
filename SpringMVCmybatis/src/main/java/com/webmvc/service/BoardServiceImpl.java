@@ -49,10 +49,23 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public void update(Board board) {
+        mapper.update(board);
+    }
+
+    @Override
     @Transactional
     public void test() {
         mapper.test();
         mapper.test();
+    }
+
+    @Override
+    public int checkPW(String id, String pw) {
+        HashMap map = new HashMap();
+        map.put("id",id);
+        map.put("pw",pw);
+        return mapper.checkPass(map);
     }
 
 }

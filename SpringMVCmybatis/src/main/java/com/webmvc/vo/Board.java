@@ -23,6 +23,19 @@ public class Board {
 		this.count = count;
 	}
 
+	@Override
+	public String toString() {
+		return "Board{" +
+				"num='" + num + '\'' +
+				", pass='" + pass + '\'' +
+				", name='" + name + '\'' +
+				", wdate='" + wdate + '\'' +
+				", title='" + title + '\'' +
+				", content='" + content + '\'' +
+				", count='" + count + '\'' +
+				'}';
+	}
+
 	//getter/setter
 	public String getNum() {
 		return num;

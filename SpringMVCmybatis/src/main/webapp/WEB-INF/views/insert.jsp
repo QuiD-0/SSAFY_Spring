@@ -36,7 +36,7 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <a href="list.bod">전체화면</a>
+    <a href="list">전체화면</a>
 </div>
 
 </BODY>

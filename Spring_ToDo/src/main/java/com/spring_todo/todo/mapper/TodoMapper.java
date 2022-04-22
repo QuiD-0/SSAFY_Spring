@@ -1,10 +1,10 @@
-package com.spring_todo.todo.repository;
+package com.spring_todo.todo.mapper;
 
 import com.spring_todo.todo.domain.Todo;
 
 import java.util.List;
 
-public interface TodoRepository {
+public interface TodoMapper {
     List<Todo> selectAll();
 
     List<Todo> selectsById(String id);

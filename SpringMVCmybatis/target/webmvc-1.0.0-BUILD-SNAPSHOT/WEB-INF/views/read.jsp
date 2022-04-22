@@ -48,13 +48,13 @@
         </TR>
     </TABLE>
     <a href="list">전체화면</a>
+    <a href="/update?num=${b.num}">수정하기</a>
     <a href="/delete?num=${b.num}">삭제하기</a>
     <br><br>
 
 </div>
 </body>
 </html>
-
 
 
 
