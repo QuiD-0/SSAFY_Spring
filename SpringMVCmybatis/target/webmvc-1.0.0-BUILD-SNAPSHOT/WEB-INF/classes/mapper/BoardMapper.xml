@@ -50,5 +50,9 @@
         like concat('%',#{word},'%') order by num desc
     </select>
 
+    <insert id="test">
+        insert into BOARD(NUM, PASS, NAME, WDATE, TITLE, CONTENT, COUNT)
+        values ('111','test', 'test', sysdate(), 'test','transactional test', 0)
+    </insert>
 
 </mapper>

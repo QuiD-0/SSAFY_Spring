@@ -4,9 +4,9 @@ import com.webmvc.mapper.BoardMapper;
 import com.webmvc.vo.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 
@@ -29,11 +29,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public void insert(Board b) {
         mapper.insert(b);
     }
 
     @Override
+    @Transactional
     public void delete(String num) {
         mapper.delete(num);
     }
@@ -41,9 +43,16 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public ArrayList<Board> search(String word, String condition) {
         HashMap map = new HashMap();
-        map.put("word",word);
-        map.put("condition",condition);
+        map.put("word", word);
+        map.put("condition", condition);
         return mapper.search(map);
+    }
+
+    @Override
+    @Transactional
+    public void test() {
+        mapper.test();
+        mapper.test();
     }
 
 }

@@ -5,8 +5,10 @@ import com.webmvc.vo.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -79,11 +81,24 @@ public class BoardController {
     }
 
     @GetMapping("/search")
-    public String search(String word,String condition,Model model){
-        ArrayList<Board> list = boardService.search(word,condition);// data 받음
+    public String search(String word, String condition, Model model) {
+        ArrayList<Board> list = boardService.search(word, condition);// data 받음
         model.addAttribute("list", list);// request에 데이터 저장****
         return "list";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        boardService.test();
+        return "redirect:list";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView ExceptionHandler(Exception e){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("errorMsg",e.getMessage());
+        modelAndView.setViewName("errorPage");
+        return modelAndView;
+    }
 
 }

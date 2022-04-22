@@ -15,4 +15,6 @@ public interface BoardService {
     public void delete(String num);//글 삭제
 
     ArrayList<Board> search(String word, String type);
+
+    void test();
 }

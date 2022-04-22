@@ -15,10 +15,4 @@ public class HomeController {
         return "redirect:list";
     }
 
-    @GetMapping(value = "/test")
-    public String test(Model model) {
-        model.addAttribute("city", "seattle");
-        model.addAttribute("name", "Tom");
-        return "home";
-    }
 }

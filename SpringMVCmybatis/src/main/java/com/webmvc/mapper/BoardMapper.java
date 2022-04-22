@@ -19,7 +19,7 @@ public interface BoardMapper {
 
     public void countUp(String num);//조회수 증가
 
-    ArrayList<Board> search(String word, String type);
-
     ArrayList<Board> search(HashMap map);
+
+    void test();
 }
