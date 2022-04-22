@@ -6,31 +6,48 @@
 <mapper namespace="com.webmvc.mapper.BoardMapper">
 
     <select id="selectAll" resultType="Board">
-        select num, name, wdate, title, count from board order by num desc
+        select num, name, wdate, title, count
+        from board
+        order by num desc
     </select>
 
     <select id="selectOne" resultType="Board" parameterType="String">
-        select * from board where num = #{num}
+        select *
+        from board
+        where num = #{num}
     </select>
 
     <insert id="insert" parameterType="Board">
-            insert into BOARD(PASS,NAME,WDATE,TITLE,CONTENT,COUNT) values(#{pass},#{name},sysdate(),#{title},#{content},0)
+        insert into BOARD(PASS, NAME, WDATE, TITLE, CONTENT, COUNT)
+        values (#{pass}, #{name}, sysdate(), #{title}, #{content}, 0)
     </insert>
 
     <delete id="delete" parameterType="String">
-        delete from board where num = #{num}
+        delete
+        from board
+        where num = #{num}
     </delete>
 
     <delete id="deleteAll" parameterType="String">
-        delete from board
+        delete
+        from board
     </delete>
 
     <update id="countUp" parameterType="Board">
-        update board set count = count + 1 where num = #{num}
+        update board
+        set count = count + 1
+        where num = #{num}
     </update>
 
     <select id="search" parameterType="Map" resultType="Board">
-        select num, name, wdate, title, count from board where #{condition} like concat('%',#{word},'%') order by num desc
+        select num, name, wdate, title, count from board
+        <if test="condition == 'name'">
+            where name
+        </if>
+        <if test="condition == 'title'">
+            where title
+        </if>
+        like concat('%',#{word},'%') order by num desc
     </select>
 
 
