@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper file: 실행 할 쿼리 문을 저장하는 파일. 테이블 하나당 한개씩 작성
+namespace: 작업하는 테이블들을 구분해주기 위한 식별자 -->
+<mapper namespace="com.mvc.mapper.CustomerMapper">
+
+  <select id="selectAll" resultType="Customer">
+    select * from customer
+  </select>
+
+  <select id="selectOne" parameterType="java.lang.String" resultType="Customer">
+    select * from customer where num = #{num}
+  </select>
+  
+  <insert id="insert" parameterType="Customer">
+  	insert into customer values(#{num}, #{name}, #{address})  
+  </insert>
+  
+  <update id="update" parameterType="Customer">
+  	update customer set address = #{address} where num = #{num}
+  
+  </update>
+
+    
+  <select id="findByAddress" parameterType="string" resultType="Customer">
+  	select * from customer where address = #{address}
+  </select>
+
+ <delete id="delete" parameterType="string">
+  	delete from customer where num = #{num}
+  </delete>
+
+</mapper>
+
+
+
+
+
+
