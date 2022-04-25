@@ -16,7 +16,7 @@ public class CustomerRestController {
     CustomerService customerService;
 
     @PostMapping
-    public void insert(Customer customer){
+    public void insert(@RequestBody Customer customer){
         customerService.insert(customer);
     }
 
