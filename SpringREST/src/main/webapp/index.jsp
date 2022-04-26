@@ -10,6 +10,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+
+        function customerSelectResult(result) {
+            $('#num').val(result.num);
+            $('#name').val(result.name);
+            $('#address').val(result.address);
+        }
+
+        function customerSelect(result) {
+            $('tbody').on('click', 'tr', function () {
+                let num = $(this).find('#hnum');
+                console.log(num);
+                $.ajax({
+                    url: "http://localhost:8000/customers/" + num,
+                    type: "get",
+                    dataType: "json",
+                    success: customerSelectResult,
+                })
+            })
+        }
+
+
         function customerListResult(data) {
             $.each(data, function (index, item) {
                 $('<tr>').append($('<td>').text(item.num)).append($('<td>').text(item.name)).append($('<td>').text(item.address)).append('<input type="hidden" id="hnum">').val(item.num).appendTo('tbody');
@@ -17,6 +38,7 @@
         }
 
         function customerList() {
+            $('tbody').empty();
             $.ajax({
                 url: "http://localhost:8000/customers",
                 type: 'get',
@@ -30,8 +52,91 @@
             })
         }
 
+        function clear() {
+            $('#num').val("");
+            $('#name').val("");
+            $('#address').val("");
+        }
+
+        function customerInsert() {
+            $('#btnInsert').on('click', function () {
+                //    입력값 받아오기
+                //    ajax 요청
+                let num = $('#num').val();
+                let name = $('#name').val();
+                let address = $('#address').val();
+                if (num != "" && name != "" && address != "") {
+                    $.ajax({
+                        url: "http://localhost:8000/customers",
+                        type: "post",
+                        contentType: "application/json",
+                        data: JSON.stringify({"num": num, "name": name, "address": address}),
+                        success: function () {
+                            customerList();
+                            clear();
+                        }
+                    })
+                } else {
+                    alert("값을 입력해 주세요")
+                }
+            });
+        }
+
+        function init() {
+            clear();
+        }
+
+        function customerUpdate() {
+            $('#btnUpdate').on('click', function () {
+                //    입력값 받아오기
+                //    ajax 요청
+                let num = $('#num').val();
+                let name = $('#name').val();
+                let address = $('#address').val();
+                if (num != "" && name != "" && address != "") {
+                    $.ajax({
+                        url: "http://localhost:8000/customers",
+                        type: "put",
+                        contentType: "application/json",
+                        data: JSON.stringify({"num": num, "name": name, "address": address}),
+                        success: function () {
+                            customerList();
+                            clear();
+                        }
+                    })
+                } else {
+                    alert("값을 입력해 주세요")
+                }
+            });
+        }
+
+        function customerDelete() {
+            $('#btnDelete').on('click', function () {
+                //    입력값 받아오기
+                //    ajax 요청
+                let num = $('#num').val();
+                if (num != "") {
+                    $.ajax({
+                        url: "http://localhost:8000/customers" + num,
+                        type: "delete",
+                        success: function () {
+                            customerList();
+                            clear();
+                        }
+                    })
+                } else {
+                    alert("값을 입력해 주세요")
+                }
+            });
+        }
+
         $(document).ready(function () {
             customerList();
+            customerInsert();
+            customerSelect();
+            customerDelete();
+            customerUpdate();
+            init();
         })
     </script>
 </head>
