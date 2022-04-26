@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Collections;
 import java.util.List;
 
-@Controller
+//@Controller
 public class TodoController {
 
     @Autowired
