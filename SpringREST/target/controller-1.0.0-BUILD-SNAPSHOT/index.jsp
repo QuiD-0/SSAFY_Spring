@@ -19,8 +19,7 @@
 
         function customerSelect(result) {
             $('tbody').on('click', 'tr', function () {
-                let num = $(this).find('#hnum');
-                console.log(num);
+                let num = $(this).find('#hnum').val();
                 $.ajax({
                     url: "http://localhost:8000/customers/" + num,
                     type: "get",
@@ -33,9 +32,7 @@
 
         function customerListResult(data) {
             $.each(data, function (index, item) {
-                let a = '<input type="hidden" id="hnum" value={item.num}>';
-                console.log(a);
-                $('<tr>').append($('<td>').text(item.num)).append($('<td>').text(item.name)).append($('<td>').text(item.address)).append(a).appendTo('tbody');
+                $('<tr>').append($('<td>').text(item.num)).append($('<td>').text(item.name)).append($('<td>').text(item.address)).append($('<input type="hidden" id="hnum">').val(item.num)).appendTo('tbody');
             })
         }
 
@@ -84,10 +81,6 @@
             });
         }
 
-        function init() {
-            clear();
-        }
-
         function customerUpdate() {
             $('#btnUpdate').on('click', function () {
                 //    입력값 받아오기
@@ -119,7 +112,7 @@
                 let num = $('#num').val();
                 if (num != "") {
                     $.ajax({
-                        url: "http://localhost:8000/customers" + num,
+                        url: "http://localhost:8000/customers/" + num,
                         type: "delete",
                         success: function () {
                             customerList();
@@ -129,6 +122,12 @@
                 } else {
                     alert("값을 입력해 주세요")
                 }
+            });
+        }
+
+        function init() {
+            $('#btnInit').on('click', function () {
+                clear();
             });
         }
 
