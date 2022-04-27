@@ -1,6 +1,11 @@
 package com.webmvc.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 //vo(value object):값을 저장하기 위한 용도.테이블 안의 레코드 한 건의 값을 저장하기 위한 목적
+@Getter
+@Setter
 public class Board {
 	private String num;
 	private String pass;
@@ -36,48 +41,4 @@ public class Board {
 				'}';
 	}
 
-	//getter/setter
-	public String getNum() {
-		return num;
-	}
-	
-	public void setNum(String num) {
-		this.num = num;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getWdate() {
-		return wdate;
-	}
-	public void setWdate(String wdate) {
-		this.wdate = wdate;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getCount() {
-		return count;
-	}
-	public void setCount(String count) {
-		this.count = count;
-	}
 }

@@ -3,110 +3,61 @@ package com.webmvc.controller;
 import com.webmvc.service.BoardService;
 import com.webmvc.vo.Board;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 //FrontController에게서 요청을 넘겨 받아 Service한테 작업을 넘김
-@Controller
+//@Controller
+@RestController
+@RequestMapping("/board")
 public class BoardController {
 
     @Autowired
     BoardService boardService;// interface type
 
     // request < session < application
-    @GetMapping("/list")
-    public String list(Model model) {
-        ArrayList<Board> list = boardService.selectAll();// data 받음
-        model.addAttribute("list", list);// request에 데이터 저장****
-        return "list";
+    @GetMapping
+    public ResponseEntity<List<Board>> list() {
+        ArrayList<Board> list = boardService.selectAll();
+        return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/read")
-    public String read(String num, Model model) {
+    @GetMapping("/{pk}")
+    public ResponseEntity<Board> read(@PathVariable(name = "pk") String num) {
         Board b = boardService.selectOne(num);
-        model.addAttribute("b", b);
-        return "read";
+        return new ResponseEntity(b,HttpStatus.OK);
     }
 
-    @GetMapping("/insertForm")
-    public String insertForm() {
-        return "insert";
-
-    }
-
-    @PostMapping("/insertProcess")
-    public String insertProcess(Board board) {
+    @PostMapping
+    public ResponseEntity insertProcess(@RequestBody Board board) {
         boardService.insert(board);
-        return "redirect:list";
+        return new ResponseEntity(HttpStatus.OK);
 
     }
 
-    @GetMapping("/delete")
-    public String delete(String num) {
+    @DeleteMapping
+    public ResponseEntity delete(String num) {
         boardService.delete(num);
-        return "redirect:list";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/loginForm")
-    public String loginForm(HttpSession httpSession) {// 로그인화면
-        if (httpSession.getAttribute("id") == null) {
-            return "loginForm";
-        } else {
-            return "list";
-        }
-    }
 
-    @PostMapping("/loginProcess")
-    public String loginProcess(String id,String pw, HttpSession httpSession) {
-        // db체크
-        if(boardService.checkPW(id,pw)!=0){
-            httpSession.setAttribute("id", id);
-        }
-        return "redirect:list";
-
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession httpSession) {
-        httpSession.setAttribute("id", null);
-
-        return "redirect:list";
-    }
-
-    @GetMapping("/search")
-    public String search(String word, String condition, Model model) {
+    @GetMapping("/search/{condition}/{pk}")
+    public ResponseEntity<List<Board>> search(@PathVariable(name = "pk") String word, @PathVariable(name = "condition") String condition) {
         ArrayList<Board> list = boardService.search(word, condition);// data 받음
-        model.addAttribute("list", list);// request에 데이터 저장****
-        return "list";
+        return new ResponseEntity<List<Board>>(list,HttpStatus.OK);
     }
 
-    @GetMapping("/update")
-    public String update(String num,Model model) {
-        Board b = boardService.selectOne(num);
-        model.addAttribute("board",b);
-        return "updateForm";
-    }
-
-    @PostMapping("/updateProcess")
-    public String uProc(Board board, Model model){
+    @PutMapping
+    public ResponseEntity update(@RequestBody Board board) {
         boardService.update(board);
-        model.addAttribute("num",board.getNum());
-        return "redirect:read";
-    }
-
-
-
-    @GetMapping("/test")
-    public String test(){
-        boardService.test();
-        return "redirect:list";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @ExceptionHandler(Exception.class)

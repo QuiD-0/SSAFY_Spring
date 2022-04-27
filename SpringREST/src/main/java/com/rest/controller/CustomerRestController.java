@@ -4,10 +4,13 @@ package com.rest.controller;
 import com.mvc.service.CustomerService;
 import com.mvc.vo.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/customers")
 public class CustomerRestController {
@@ -21,8 +24,9 @@ public class CustomerRestController {
     }
 
     @GetMapping
-    public List<Customer> showAll(){
-        return customerService.selectAll();
+    public ResponseEntity<List<Customer>> showAll(){
+        List<Customer> list =customerService.selectAll();
+        return new ResponseEntity(list, HttpStatus.OK);
     }
 
     @GetMapping("/{pk}")

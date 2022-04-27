@@ -131,12 +131,38 @@
             });
         }
 
+        function customerSearch() {
+            $('#btnSearch').on('click', function () {
+                let address = $('#address').val();
+                if (address != "") {
+                    $('tbody').empty();
+                    $.ajax({
+                        url: "http://localhost:8000/customers/addr/" + address,
+                        type: "get",
+                        success: function (data) {
+                            customerListResult(data);
+                        },
+                    })
+                } else {
+                    alert("값을 입력해 주세요")
+                }
+            });
+        }
+
+        function customerAll() {
+            $('#btnAll').on('click', function () {
+                customerList();
+            });
+        }
+
         $(document).ready(function () {
             customerList();
             customerInsert();
             customerSelect();
             customerDelete();
             customerUpdate();
+            customerSearch();
+            customerAll();
             init();
         })
     </script>
@@ -161,6 +187,8 @@
             <input type="button" class="btn btn-primary" value="등록" id="btnInsert"/>
             <input type="button" class="btn btn-primary" value="수정" id="btnUpdate"/>
             <input type="button" class="btn btn-primary" value="삭제" id="btnDelete"/>
+            <input type="button" class="btn btn-primary" value="검색" id="btnSearch"/>
+            <input type="button" class="btn btn-primary" value="모두보기" id="btnAll"/>
             <input type="button" class="btn btn-primary" value="초기화" id="btnInit"/>
         </div>
     </form>
