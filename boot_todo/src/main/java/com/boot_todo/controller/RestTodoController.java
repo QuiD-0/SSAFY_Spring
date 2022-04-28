@@ -2,12 +2,14 @@ package com.boot_todo.controller;
 
 import com.boot_todo.domain.Todo;
 import com.boot_todo.service.TodoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Api(value = "SwaggerTestController")
 @RequestMapping("/todo")
 public class RestTodoController {
 
@@ -40,7 +42,7 @@ public class RestTodoController {
     }
 
     @PutMapping("/{pk}")
-    public void writeProc(@PathVariable(name = "pk") String num) {
+    public void update(@PathVariable(name = "pk") String num) {
         todoService.done(num);
     }
 
