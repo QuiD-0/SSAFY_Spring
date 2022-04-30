@@ -1,15 +1,18 @@
 package com.boot_todo.controller;
 
 import com.boot_todo.domain.Todo;
+import com.boot_todo.mapper.TodoMapper;
 import com.boot_todo.service.TodoService;
+import com.boot_todo.service.TodoServiceImpl;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@Api(value = "SwaggerTestController")
+@Api(value = "ToDoController")
 @RequestMapping("/todo")
 public class RestTodoController {
 
@@ -17,6 +20,7 @@ public class RestTodoController {
     TodoService todoService;
 
     @GetMapping
+    @ApiOperation(value = "모든 todo를 보여줍니다.", notes = "모든 todo를 json형태로 리턴")
     public List<Todo> all() {
         return todoService.FindAll();
     }

@@ -2,15 +2,16 @@ package com.boot_todo.service;
 
 import com.boot_todo.domain.Todo;
 import com.boot_todo.mapper.TodoMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
-    @Autowired
-    TodoMapper todoMapper;
+    private final TodoMapper todoMapper;
 
     @Override
     public List<Todo> FindAll() {
