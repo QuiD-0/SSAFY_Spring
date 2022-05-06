@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeCommentMapper">
+
+	<select id="getCommentsByNoticeId" parameterType="int" resultType="NoticeCommentDto">
+		select commentId, userId, content, createDate from noticecomment
+		where noticeId = #{noticeId}
+	</select>
+
+	<select id="getCommentById" parameterType="int" resultType="NoticeCommentDto">
+		select * from noticecomment
+		where commentId = #{id}
+	</select>
+
+	<insert id="registerComment" parameterType="NoticeCommentDto">
+		insert into noticecomment(noticeId, userId, content)
+		values (#{noticeId}, #{userId}, #{content} )
+	</insert>
+
+	<update id="updateComment" parameterType="NoticeCommentDto">
+		update noticecomment
+		set content = #{content}
+		where commentId = #{commentId}
+	</update>
+
+	<delete id="deleteCommentById" parameterType="int">
+		delete from noticecomment
+		where commentId = #{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+
+	<select id="getNotice" parameterType="int" resultType="NoticeDto">
+		select noticeId, title, createDate, viewCount from notice
+		order by noticeId desc
+		limit 10
+		offset #{start}
+	</select>
+
+	<select id="getNoticeMaxPage" resultType="string">
+		select ceil(count(noticeId)/10) maxPage from notice
+	</select>
+
+	<select id="getNoticeById" parameterType="int" resultType="NoticeDto">
+		select * from notice
+		where noticeId = #{id}
+	</select>
+
+	<insert id="registerNotice" parameterType="NoticeDto">
+		insert into notice(title, content, userId)
+		values (#{title}, #{content}, #{userId} )
+	</insert>
+
+	<update id="updateNotice" parameterType="NoticeDto">
+		update notice
+		set title = #{title}, content = #{content}
+		where noticeId = #{noticeId}
+	</update>
+
+	<update id="increaseViewCount" parameterType="int">
+		update notice
+		set viewCount = viewCount + 1
+		where noticeId = #{id}
+	</update>
+
+	<delete id="deleteNoticeById" parameterType="int">
+		delete from notice
+		where noticeId = #{id}
+	</delete>
+
+</mapper>

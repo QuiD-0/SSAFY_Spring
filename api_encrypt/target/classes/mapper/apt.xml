@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.HouseMapMapper">
+
+    <select id="getSido" resultType="sidoGugunCodeDto">
+        select left (sidoCode, 2) sidoCode, sidoName
+        from sidocode
+        order by sidoCode
+    </select>
+
+    <select id="getGugunInSido" parameterType="string" resultType="sidoGugunCodeDto">
+        select left (gugunCode, 5) gugunCode, gugunName
+        from guguncode
+        where left (gugunCode, 2) = #{sido}
+        order by gugunCode
+    </select>
+
+    <select id="getDongInGugun" parameterType="string" resultType="houseInfoDto">
+        select distinct dongName, dongCode
+        from houseinfo
+        where left (dongCode, 5) = #{gugun}
+        order by dongName
+    </select>
+
+    <select id="getAptInDong" parameterType="string" resultType="houseInfoDto">
+        select h.aptCode,
+               h.aptName,
+               h.buildyear,
+               h.dongCode,
+               h.dongName,
+               h.jibun,
+               h.lat,
+               h.lng,
+               si.sidoname,
+               gu.gugunname,
+               (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        from houseinfo h
+            left join sidocode si
+        on left (h.dongcode,2) = left (si.sidocode,2)
+            left join guguncode gu
+            on left (h.dongcode,5) = left (gu.guguncode,5)
+        where dongCode = #{dong}
+        order by aptName
+    </select>
+    <select id="findAllHouseDeal" parameterType="int" resultType="houseInfoDto">
+        SELECT h.aptCode,
+               h.aptName,
+               h.buildyear,
+               h.dongCode,
+               h.dongName,
+               h.jibun,
+               h.lat,
+               h.lng,
+               si.sidoname,
+               gu.gugunname,
+               (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        FROM housedeal
+            join houseinfo h using (aptcode)
+            left join sidocode si
+        on left (h.dongcode, 2) = left (si.sidocode, 2)
+            left join guguncode gu
+            on left (h.dongcode,5) = left (gu.guguncode,5)
+            limit 5
+        offset #{page}
+    </select>
+    <select id="getAllHouseDealCount" resultType="int">
+        SELECT count(*)
+        FROM housedeal
+                 join houseinfo h using (aptcode)
+    </select>
+
+    <select id="findHouseDealByNo" parameterType="string" resultType="houseInfoDto">
+        SELECT h.aptCode,
+               h.aptName,
+               h.buildyear,
+               h.dongCode,
+               h.dongName,
+               h.jibun,
+               h.lat,
+               h.lng,
+               si.sidoname,
+               gu.gugunname,
+               (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        FROM housedeal
+            join houseinfo h using (aptcode) left join sidocode si
+        on left (h.dongcode, 2) = left (si.sidocode, 2)
+            left join guguncode gu
+            on left (h.dongcode,5) = left (gu.guguncode,5)
+        where no =#{no}
+    </select>
+
+    <select id="findAPTByCode" resultType="houseInfoDto" parameterType="map">
+        SELECT distinct h.aptCode,
+                        h.aptName,
+                        h.buildyear,
+                        h.dongCode,
+                        h.dongName,
+                        h.jibun,
+                        h.lat,
+                        h.lng,
+                        si.sidoname,
+                        gu.gugunname,
+                        (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        FROM housedeal
+            join houseinfo h using (aptcode)
+            left join sidocode si
+        on left (h.dongcode, 2) = left (si.sidocode, 2)
+            left join guguncode gu
+            on left (h.dongcode,5) = left (gu.guguncode,5)
+        where h.aptCode = #{code} limit 5
+        offset #{page}
+    </select>
+    <select id="getAPTByCodeCount" resultType="int" parameterType="String">
+        SELECT count(distinct h.aptCode)
+        FROM housedeal join houseinfo h using(aptcode)
+        where aptCode = #{code}
+    </select>
+
+    <select id="findDongByCode" resultType="houseInfoDto" parameterType="map">
+        SELECT distinct h.aptCode,
+                        h.aptName,
+                        h.buildyear,
+                        h.dongCode,
+                        h.dongName,
+                        h.jibun,
+                        h.lat,
+                        h.lng,
+                        si.sidoname,
+                        gu.gugunname,
+                        (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        FROM housedeal join houseinfo h using (aptcode)
+            left join sidocode si
+        on left (h.dongcode, 2) = left (si.sidocode, 2)
+            left join guguncode gu
+            on left (h.dongcode,5) = left (gu.guguncode,5)
+        where h.dongCode =#{code} limit 5
+        offset #{page}
+    </select>
+
+    <select id="getDongByCodeCount" resultType="int" parameterType="String">
+        SELECT count(distinct h.aptCode)
+        FROM housedeal join houseinfo h using(aptcode)
+        where dongCode = #{code}
+    </select>
+    <select id="findAPTByName" resultType="houseInfoDto" parameterType="map">
+        SELECT distinct h.aptCode,
+                        h.aptName,
+                        h.buildyear,
+                        h.dongCode,
+                        h.dongName,
+                        h.jibun,
+                        h.lat,
+                        h.lng,
+                        si.sidoname,
+                        gu.gugunname,
+                        (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        FROM housedeal join houseinfo h using (aptcode)
+            left join sidocode si
+        on left (h.dongcode, 2) = left (si.sidocode, 2)
+            left join guguncode gu
+            on left (h.dongcode,5) = left (gu.guguncode,5)
+        where h.aptName like concat('%', #{name}, '%') limit 5
+        offset #{page}
+    </select>
+    <select id="getAPTByNameCount" resultType="int" parameterType="String">
+        SELECT count(distinct h.aptCode)
+        FROM housedeal join houseinfo h using(aptcode)
+        where aptName like concat('%', #{name}, '%')
+    </select>
+    <select id="findDongByName" resultType="houseInfoDto" parameterType="map">
+        SELECT distinct h.aptCode,
+                        h.aptName,
+                        h.buildyear,
+                        h.dongCode,
+                        h.dongName,
+                        h.jibun,
+                        h.lat,
+                        h.lng,
+                        si.sidoname,
+                        gu.gugunname,
+                        (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        FROM housedeal join houseinfo h using (aptcode)
+            left join sidocode si
+        on left (h.dongcode, 2) = left (si.sidocode, 2)
+            left join guguncode gu
+            on left (h.dongcode,5) = left (gu.guguncode,5)
+        where h.dongName like concat('%', #{name}, '%') limit 5
+        offset #{page}
+    </select>
+    <select id="getDongByNameCount" resultType="int" parameterType="String">
+        SELECT count(distinct h.aptCode)
+        FROM housedeal join houseinfo h using(aptcode)
+        where dongName like concat('%', #{name}, '%')
+    </select>
+</mapper>
