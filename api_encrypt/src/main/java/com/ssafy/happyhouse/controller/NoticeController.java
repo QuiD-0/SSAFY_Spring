@@ -93,4 +93,15 @@ public class NoticeController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 	}
+
+	@ApiOperation(value = "공지사항 검색")
+	@GetMapping("/search/{keywords}")
+	public ResponseEntity<?> searchNotice(@PathVariable("keywords") String keywords) throws Exception {
+		List<NoticeDto> list = noticeService.searchNoticeByKeywords(keywords);
+		if(list != null) {
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
 }

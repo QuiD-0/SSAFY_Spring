@@ -42,4 +42,17 @@
 		where noticeId = #{id}
 	</delete>
 
+	<select id="getAllName" resultType="NoticeDto">
+		select noticeId, title from notice
+	</select>
+
+	<select id="getNoticeByIdList" resultType="NoticeDto">
+		select * from notice
+		where noticeId in
+		<foreach collection="list" item="item" open="(" close=")" separator=", ">
+			#{item}
+		</foreach>
+		order by noticeId desc
+	</select>
+
 </mapper>
