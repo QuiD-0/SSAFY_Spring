@@ -14,4 +14,6 @@ public interface NoticeMapper {
 	void updateNotice(NoticeDto notice);
 	void increaseViewCount(int id);
 	void deleteNoticeById(int id);
+	List<NoticeDto> getAllName();
+	List<NoticeDto> getNoticeByIdList(List<Integer> list);
 }

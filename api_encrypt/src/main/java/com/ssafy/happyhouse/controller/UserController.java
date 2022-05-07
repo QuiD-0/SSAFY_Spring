@@ -53,17 +53,6 @@ public class UserController {
 	}
 
 	@ApiOperation(value = "해당 ID를 가진 유저 정보 수정")
-	@PostMapping("/")
-	public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) throws Exception {
-		UserDto user = userService.getUserById(userDto.getId());
-		if(user != null) {
-			return new ResponseEntity<>("이미 존재하는 ID 입니다.", HttpStatus.BAD_REQUEST);
-		} else {
-			userService.registerUser(userDto);
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-	}
-
 	@PutMapping("/")
 	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto) throws Exception {
 		UserDto user = userService.getUserById(userDto.getId());
