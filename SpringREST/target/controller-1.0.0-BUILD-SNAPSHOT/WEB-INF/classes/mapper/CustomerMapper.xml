@@ -6,31 +6,31 @@
 namespace: 작업하는 테이블들을 구분해주기 위한 식별자 -->
 <mapper namespace="com.mvc.mapper.CustomerMapper">
 
-  <select id="selectAll" resultType="Customer">
-    select * from customer
-  </select>
+<!--  <select id="selectAll" resultType="Customer">-->
+<!--    select * from customer-->
+<!--  </select>-->
 
-  <select id="selectOne" parameterType="java.lang.String" resultType="Customer">
-    select * from customer where num = #{num}
-  </select>
-  
-  <insert id="insert" parameterType="Customer">
-  	insert into customer values(#{num}, #{name}, #{address})  
-  </insert>
-  
-  <update id="update" parameterType="Customer">
-  	update customer set address = #{address} where num = #{num}
-  
-  </update>
+<!--  <select id="selectOne" parameterType="java.lang.String" resultType="Customer">-->
+<!--    select * from customer where num = #{num}-->
+<!--  </select>-->
+<!--  -->
+<!--  <insert id="insert" parameterType="Customer">-->
+<!--  	insert into customer values(#{num}, #{name}, #{address})  -->
+<!--  </insert>-->
+<!--  -->
+<!--  <update id="update" parameterType="Customer">-->
+<!--  	update customer set address = #{address} where num = #{num}-->
+<!--  -->
+<!--  </update>-->
 
-    
-  <select id="findByAddress" parameterType="string" resultType="Customer">
-  	select * from customer where address = #{address}
-  </select>
+<!--    -->
+<!--  <select id="findByAddress" parameterType="string" resultType="Customer">-->
+<!--  	select * from customer where address = #{address}-->
+<!--  </select>-->
 
- <delete id="delete" parameterType="string">
-  	delete from customer where num = #{num}
-  </delete>
+<!-- <delete id="delete" parameterType="string">-->
+<!--  	delete from customer where num = #{num}-->
+<!--  </delete>-->
 
 </mapper>
 
