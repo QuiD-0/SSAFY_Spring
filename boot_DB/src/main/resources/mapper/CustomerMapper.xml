@@ -19,7 +19,7 @@ namespace: 작업하는 테이블들을 구분해주기 위한 식별자 -->
   </insert>
   
   <update id="update" parameterType="Customer">
-  	update customer set address = #{address} where num = #{num}
+  	update customer set address = #{address},name =#{name} where num = #{num}
   
   </update>
 
