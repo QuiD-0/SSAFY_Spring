@@ -1,16 +1,13 @@
 package com.boot_todo.controller;
 
-import com.boot_todo.BootTodoApplication;
 import com.boot_todo.domain.Todo;
-import com.boot_todo.mapper.TodoMapper;
 import com.boot_todo.service.TodoService;
-import com.boot_todo.service.TodoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,10 +19,10 @@ public class RestTodoController {
 
     private static final Logger LOGGER = LogManager.getLogger(RestTodoController.class);
 
-
     @Autowired
     TodoService todoService;
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     @ApiOperation(value = "모든 todo를 보여줍니다.", notes = "모든 todo를 json형태로 리턴")
     public List<Todo> all() {
@@ -49,6 +46,7 @@ public class RestTodoController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void write(@RequestBody Todo todo) {
         todoService.write(todo);
     }
@@ -60,7 +58,7 @@ public class RestTodoController {
 
     @GetMapping("/id/{pk}")
     public List<Todo> search(@PathVariable(name = "pk") String word) {
-       return todoService.findById(word);
+        return todoService.findById(word);
     }
 
 }
