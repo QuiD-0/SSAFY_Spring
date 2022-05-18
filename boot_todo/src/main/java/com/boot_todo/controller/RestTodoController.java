@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @Api(value = "ToDoController")
 @RequestMapping("/todo")
+@CrossOrigin("*")
 public class RestTodoController {
 
     private static final Logger LOGGER = LogManager.getLogger(RestTodoController.class);
@@ -60,5 +61,8 @@ public class RestTodoController {
     public List<Todo> search(@PathVariable(name = "pk") String word) {
         return todoService.findById(word);
     }
+
+    @GetMapping("/search/{word}")
+    public List<Todo> searchContent(@PathVariable(name = "word")String word){return todoService.findContent(word);}
 
 }

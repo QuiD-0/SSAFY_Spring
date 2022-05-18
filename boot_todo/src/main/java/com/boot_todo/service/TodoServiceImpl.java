@@ -48,4 +48,9 @@ public class TodoServiceImpl implements TodoService {
     public void done(String num) {
         todoMapper.done(num);
     }
+
+    @Override
+    public List<Todo> findContent(String word) {
+        return todoMapper.searchContent(word);
+    }
 }

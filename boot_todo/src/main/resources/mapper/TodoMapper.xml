@@ -45,5 +45,12 @@
         order by num asc
     </select>
 
+    <select id="searchContent" parameterType="String" resultType="com.boot_todo.domain.Todo">
+        select *
+        from todolist
+        where content like concat('%', #{word}, '%')
+        order by num asc
+    </select>
+
 
 </mapper>

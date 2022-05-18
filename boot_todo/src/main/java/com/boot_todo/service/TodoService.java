@@ -23,4 +23,5 @@ public interface TodoService {
     void done(String num);
 
 
+    List<Todo> findContent( String word);
 }

@@ -20,4 +20,6 @@ public interface TodoMapper {
     void deleteAll();
 
     void done(String num);
+
+    List<Todo> searchContent(String word);
 }
