@@ -38,7 +38,7 @@ CREATE TABLE `qna` (
 
 LOCK TABLES `qna` WRITE;
 /*!40000 ALTER TABLE `qna` DISABLE KEYS */;
-INSERT INTO `qna` VALUES (1,'test','test','test','2022-05-18 10:39:33'),(2,'test2','수정','하이','2022-05-18 10:42:15'),(3,'재웅','질문입니다','질문내용','2022-05-18 13:24:59');
+INSERT INTO `qna` VALUES (2,'test2','수정','하이','2022-05-18 10:42:15'),(3,'재웅','질문입니다','질문내용','2022-05-18 13:24:59');
 /*!40000 ALTER TABLE `qna` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `qna_answer` (
   `createDate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`answer_id`),
   KEY `qna_id_idx` (`qna_id`),
-  CONSTRAINT `qna_id` FOREIGN KEY (`qna_id`) REFERENCES `qna` (`qna_id`)
+  CONSTRAINT `qna_id` FOREIGN KEY (`qna_id`) REFERENCES `qna` (`qna_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,7 +68,7 @@ CREATE TABLE `qna_answer` (
 
 LOCK TABLES `qna_answer` WRITE;
 /*!40000 ALTER TABLE `qna_answer` DISABLE KEYS */;
-INSERT INTO `qna_answer` VALUES (3,1,'string','testanswer2','string','2022-05-18 11:28:29'),(4,2,'안녕','재웅','질문','2022-05-18 13:14:48');
+INSERT INTO `qna_answer` VALUES (4,2,'안녕','재웅','질문','2022-05-18 13:14:48');
 /*!40000 ALTER TABLE `qna_answer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -81,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-18 15:22:05
+-- Dump completed on 2022-05-18 18:34:31
