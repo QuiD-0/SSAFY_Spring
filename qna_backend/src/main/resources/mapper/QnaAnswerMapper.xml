@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qna.mapper.QnaAnswerMapper">
+
+    <select id="selectAnswers" resultType="com.qna.domain.QnaAnswer">
+        SELECT qna_id,answer_id,a.title,a.name,a.content,a.createDate FROM happyhouse.qna left join qna_answer a using(qna_id) where qna_id=#{qna_id};
+    </select>
+
+    <insert id="insertAnswer" parameterType="com.qna.domain.QnaAnswer">
+        INSERT INTO `happyhouse`.`qna_answer` (`qna_id`, `title`, `name`, `content`) VALUES (#{qna_id}, #{title}, #{name}, #{content});
+    </insert>
+
+    <delete id="deleteAnswer" parameterType="int">
+        delete
+        from qna_answer
+        where answer_id = #{answer_id}
+    </delete>
+
+    <update id="updateAnswer" parameterType="com.qna.domain.QnaAnswer">
+        update qna_answer set content = #{content},title = #{title} where answer_id =  #{answer_id}
+    </update>
+
+</mapper>

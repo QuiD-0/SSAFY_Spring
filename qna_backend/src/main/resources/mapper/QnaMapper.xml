@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qna.mapper.QnaMapper">
+
+    <select id="selectAll" resultType="com.qna.domain.Qna">
+        SELECT * FROM qna order by qna_id
+    </select>
+
+    <select id="selectOne" resultType="com.qna.domain.Qna" parameterType="int">
+        SELECT * FROM qna
+        where qna_id = #{qna_id}
+
+    </select>
+
+    <insert id="insert" parameterType="com.qna.domain.Qna">
+        INSERT INTO qna (`name`, `title`, `content`) VALUES (#{name}, #{title}, #{content});
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete
+        from qna
+        where qna_id = #{qna_id}
+    </delete>
+
+    <update id="update" parameterType="com.qna.domain.Qna">
+        update qna set content = #{content},title = #{title} where qna_id =  #{qna_id}
+    </update>
+
+    <select id="findQnaByWord" parameterType="String" resultType="com.qna.domain.Qna">
+        SELECT * FROM qna where title like concat('%', #{word}, '%')
+        order by qna_id asc
+    </select>
+
+
+
+</mapper>
