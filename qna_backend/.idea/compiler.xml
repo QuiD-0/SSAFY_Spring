@@ -7,16 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="boot_todo" />
+        <module name="backend" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="boot_todo" target="11" />
+      <module name="backend" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="boot_todo" options="-parameters" />
+      <module name="backend" options="-parameters" />
     </option>
   </component>
 </project>
