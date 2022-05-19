@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.happyhouse.repository.UserMapper">
+
+    <select id="getAllUsers" resultType="UserDto">
+        SELECT id, name, phone, if((select count(*) from user_admin where user_admin.id = user.id) = 1, "Y", "N") admin
+        FROM user
+    </select>
+
+    <select id="getUserById" parameterType="string" resultType="UserDto">
+        SELECT id, name, phone, if((select count(*) from user_admin where id = #{id}) = 1, "Y", "N") admin
+        FROM happyhouse.user
+        where id = #{id};
+    </select>
+
+    <insert id="registerUser" parameterType="UserDto">
+        insert into user
+        values (#{id}, #{password}, #{name}, #{phone})
+    </insert>
+
+    <update id="updateUser" parameterType="UserDto">
+        update user
+        set name  = #{name},
+            phone = #{phone}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="String">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+    <select id="loginUser" parameterType="map" resultType="UserDto">
+        select id, name, phone
+        from user
+        where id = #{id}
+          and password = #{password}
+    </select>
+
+    <insert id="registerAdmin" parameterType="map">
+        insert into user_admin
+        values (#{id}, #{name})
+    </insert>
+
+</mapper>
