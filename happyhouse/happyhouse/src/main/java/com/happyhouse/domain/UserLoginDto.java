@@ -10,16 +10,16 @@ import lombok.Setter;
 @Setter
 public class UserLoginDto {
 
-	@ApiModelProperty(value = "아이디")
-	private String id;
-	@ApiModelProperty(value = "비밀번호")
-	private String password;
+    @ApiModelProperty(value = "아이디")
+    private String id;
+    @ApiModelProperty(value = "비밀번호")
+    private String password;
 
-	@Override
-	public String toString() {
-		return "UserInfoDto{" +
-				"id='" + id + '\'' +
-				", password='" + password + '\'' +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "UserInfoDto{" +
+                "id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

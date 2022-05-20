@@ -2,7 +2,6 @@ package com.happyhouse.controller;
 
 import com.happyhouse.domain.UserDto;
 import com.happyhouse.service.AdminService;
-import com.happyhouse.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.json.JSONObject;

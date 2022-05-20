@@ -8,29 +8,33 @@ import java.util.List;
 
 public interface HouseMapService {
 
-	List<SidoGugunCodeDto> getSido() throws Exception;
-	List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception;
-	List<HouseInfoDto> getDongInGugun(String gugun) throws Exception;
-	List<HouseInfoDto> getAptInDong(String dong) throws Exception;
-	ArrayList<HouseInfoDto> getAllHouseDeal(int page);
+    List<SidoGugunCodeDto> getSido() throws Exception;
 
-	HouseInfoDto getHouseDealByNo(String no);
+    List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception;
 
-	ArrayList<HouseInfoDto> getAPTByCode(String code, int page);
+    List<HouseInfoDto> getDongInGugun(String gugun) throws Exception;
 
-	ArrayList<HouseInfoDto> getDongByCode(String code, int page);
+    List<HouseInfoDto> getAptInDong(String dong) throws Exception;
 
-	ArrayList<HouseInfoDto> getAPTByName(String name, int page);
+    ArrayList<HouseInfoDto> getAllHouseDeal(int page);
 
-	ArrayList<HouseInfoDto> getDongByName(String name, int page);
+    HouseInfoDto getHouseDealByNo(String no);
 
-	int getAllHouseDealCount();
+    ArrayList<HouseInfoDto> getAPTByCode(String code, int page);
 
-	int getAPTByCodeCount(String code);
+    ArrayList<HouseInfoDto> getDongByCode(String code, int page);
 
-	int getDongByCodeCount(String code);
+    ArrayList<HouseInfoDto> getAPTByName(String name, int page);
 
-	int getAPTByNameCount(String name);
+    ArrayList<HouseInfoDto> getDongByName(String name, int page);
 
-	int getDongByNameCount(String name);
+    int getAllHouseDealCount();
+
+    int getAPTByCodeCount(String code);
+
+    int getDongByCodeCount(String code);
+
+    int getAPTByNameCount(String name);
+
+    int getDongByNameCount(String name);
 }
