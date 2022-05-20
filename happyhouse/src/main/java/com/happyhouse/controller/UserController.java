@@ -132,13 +132,14 @@ public class UserController {
     @PostMapping("/findid")
     public ResponseEntity<?> findid(@RequestBody UserDto userDto) throws Exception {
         String id = userService.findId(userDto.getName(),userDto.getPhone());
+        System.out.println(id);
         JSONObject json = new JSONObject();
         if(id==null){
             json.put("message", "일치하는 ID가 없습니다.");
             return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
         }
         json.put("id", id);
-        return new ResponseEntity<>(json,HttpStatus.OK);
+        return new ResponseEntity<>(json.toString(),HttpStatus.OK);
     }
 
     @ApiOperation(value = "PW찾기")
@@ -150,15 +151,15 @@ public class UserController {
             return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
         }
         json.put("message","인증 완료");
-        return new ResponseEntity<>(json,HttpStatus.OK);
+        return new ResponseEntity<>(json.toString(),HttpStatus.OK);
     }
 
-    @ApiOperation(value = "PW찾기")
+    @ApiOperation(value = "PW재설정", notes = "id와 newPassword에 값을 담아주세요")
     @PutMapping("/findpw")
     public ResponseEntity<?> changePW(@RequestBody UserDto userDto) throws Exception {
         JSONObject json = new JSONObject();
         userService.changePW(userDto);
         json.put("message","비밀번호 재설정 완료");
-        return new ResponseEntity<>(json,HttpStatus.OK);
+        return new ResponseEntity<>(json.toString(),HttpStatus.OK);
     }
 }

@@ -35,7 +35,7 @@
     </delete>
 
     <select id="loginUser" parameterType="map" resultType="UserDto">
-        select id, name, phone
+        select id, name, phone,if((select count(*) from user_admin where id = #{id}) = 1, "Y", "N") admin
         from user
         where id = #{id}
           and password = #{password}
@@ -52,11 +52,11 @@
         where id = #{id}
     </update>
 
-    <select id="checkID" parameterType="map">
+    <select id="checkID" parameterType="map" resultType="String">
         select id from user where name = #{name} and phone = #{phone}
     </select>
 
-    <select id="checkPW" parameterType="map">
+    <select id="checkPW" parameterType="map" resultType="int">
         select count(*) from user where name = #{name} and id = #{id}
     </select>
 
