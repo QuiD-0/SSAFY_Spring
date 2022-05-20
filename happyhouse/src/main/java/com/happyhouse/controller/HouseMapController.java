@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,17 +90,31 @@ public class HouseMapController {
     @GetMapping("/aptname/{name}/{page}")
     public ResponseEntity<HashMap> aptByName(@PathVariable(name = "name") String name, @PathVariable(name = "page") int page) {
         HashMap map = new HashMap();
-        map.put("item", haHouseMapService.getAPTByName(name, (page - 1) * 5));
+        map.put("item", haHouseMapService.getAPTByNamePaging(name, (page - 1) * 5));
         map.put("maxPage", (haHouseMapService.getAPTByNameCount(name) - 1) / 5 + 1);
         return new ResponseEntity<HashMap>(map, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "동 이름으로 검색")
+    @ApiOperation(value = "동 이름으로 검색 / 페이징")
     @GetMapping("/dongname/{name}/{page}")
-    public ResponseEntity<HashMap> dongByName(@PathVariable(name = "name") String name, @PathVariable(name = "page") int page) {
+    public ResponseEntity<HashMap> dongByNamePaging(@PathVariable(name = "name") String name, @PathVariable(name = "page") int page) {
         HashMap map = new HashMap();
-        map.put("item", haHouseMapService.getDongByName(name, (page - 1) * 5));
+        map.put("item", haHouseMapService.getDongByNamePaging(name, (page - 1) * 5));
         map.put("maxPage", (haHouseMapService.getDongByNameCount(name) - 1) / 5 + 1);
         return new ResponseEntity<HashMap>(map, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "동 이름으로 검색")
+    @GetMapping("/dongname/{name}")
+    public ResponseEntity<?> dongByName(@PathVariable(name = "name") String name) {
+        ArrayList<HouseInfoDto> list = haHouseMapService.getDongByName(name);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "아파트 이름으로 검색")
+    @GetMapping("/aptname/{name}")
+    public ResponseEntity<?> aptByName(@PathVariable(name = "name") String name) {
+        ArrayList<HouseInfoDto> list = haHouseMapService.getAPTByName(name);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

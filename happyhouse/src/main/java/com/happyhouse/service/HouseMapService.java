@@ -24,9 +24,13 @@ public interface HouseMapService {
 
     ArrayList<HouseInfoDto> getDongByCode(String code, int page);
 
-    ArrayList<HouseInfoDto> getAPTByName(String name, int page);
+    ArrayList<HouseInfoDto> getAPTByNamePaging(String name, int page);
 
-    ArrayList<HouseInfoDto> getDongByName(String name, int page);
+    ArrayList<HouseInfoDto> getDongByNamePaging(String name, int page);
+
+    ArrayList<HouseInfoDto> getAPTByName(String name);
+
+    ArrayList<HouseInfoDto> getDongByName(String name);
 
     int getAllHouseDealCount();
 

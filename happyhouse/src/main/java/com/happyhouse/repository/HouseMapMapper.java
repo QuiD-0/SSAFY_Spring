@@ -28,9 +28,9 @@ public interface HouseMapMapper {
 
     ArrayList<HouseInfoDto> findDongByCode(HashMap map);
 
-    ArrayList<HouseInfoDto> findAPTByName(HashMap map);
+    ArrayList<HouseInfoDto> findAPTByName(String name);
 
-    ArrayList<HouseInfoDto> findDongByName(HashMap map);
+    ArrayList<HouseInfoDto> findDongByName(String name);
 
     int getAllHouseDealCount();
 
@@ -41,4 +41,8 @@ public interface HouseMapMapper {
     int getAPTByNameCount(String name);
 
     int getDongByNameCount(String name);
+
+    ArrayList<HouseInfoDto> findDongByNamePaging(HashMap map);
+
+    ArrayList<HouseInfoDto> findAPTByNamePaging(HashMap map);
 }

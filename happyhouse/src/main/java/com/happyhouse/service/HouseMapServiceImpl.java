@@ -71,22 +71,33 @@ public class HouseMapServiceImpl implements HouseMapService {
     }
 
     @Override
-    public ArrayList<HouseInfoDto> getAPTByName(String name, int page) {
+    public ArrayList<HouseInfoDto> getAPTByNamePaging(String name, int page) {
         name = EngToKor(name);
         HashMap map = new HashMap();
         map.put("name", name);
         map.put("page", page);
-        return houseMapMapper.findAPTByName(map);
+        return houseMapMapper.findAPTByNamePaging(map);
     }
 
     @Override
-    public ArrayList<HouseInfoDto> getDongByName(String name, int page) {
+    public ArrayList<HouseInfoDto> getDongByNamePaging(String name, int page) {
         name = EngToKor(name);
         HashMap map = new HashMap();
         map.put("name", name);
         map.put("page", page);
-        return houseMapMapper.findDongByName(map);
+        return houseMapMapper.findDongByNamePaging(map);
     }
+
+    @Override
+    public ArrayList<HouseInfoDto> getAPTByName(String name) {
+        return houseMapMapper.findAPTByName(name);
+    }
+
+    @Override
+    public ArrayList<HouseInfoDto> getDongByName(String name) {
+        return houseMapMapper.findDongByName(name);
+    }
+
 
     @Override
     public int getAllHouseDealCount() {
