@@ -1,15 +1,18 @@
 package com.happyhouse.controller;
 
 import com.happyhouse.domain.UserDto;
+import com.happyhouse.domain.UserLoginDto;
 import com.happyhouse.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -20,6 +23,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private HttpSession httpSession;
 
     @ApiOperation(value = "전체 유저 목록", response = List.class)
     @GetMapping
@@ -83,5 +88,25 @@ public class UserController {
             userService.registerUser(userDto);
             return new ResponseEntity<>(HttpStatus.OK);
         }
+    }
+    @ApiOperation(value = "유저 로그인", response = UserDto.class)
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserLoginDto loginDto) throws Exception {
+        UserDto user = userService.loginUser(loginDto.getId(), loginDto.getPassword());
+        if (user == null) {
+            JSONObject json = new JSONObject();
+            json.put("message", "해당 ID 혹은 비밀번호가 틀립니다.");
+            return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
+        } else {
+            httpSession.setAttribute("userinfo", user);
+            return new ResponseEntity<>(user,HttpStatus.OK);
+        }
+    }
+
+    @ApiOperation(value = "유저 로그아웃")
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() throws Exception {
+        httpSession.invalidate();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

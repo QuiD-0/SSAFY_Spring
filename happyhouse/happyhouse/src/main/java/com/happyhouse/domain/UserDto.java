@@ -25,7 +25,6 @@ public class UserDto {
     public String toString() {
         return "UserDto{" +
                 "id='" + id + '\'' +
-                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", admin='" + admin + '\'' +
