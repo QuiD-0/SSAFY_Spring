@@ -50,7 +50,7 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title(title)
-                .description("<h3>HappyHouse API Reference for Developers</h3>Swagger를 이용한 HappyHouse API<br><img src=\"/img/happyhouse.png\" width=\"150\">")
+                .description("<h3>HappyHouse API Reference for Developers</h3>Swagger를 이용한 HappyHouse API")
                 .version("1.0").build();
     }
 

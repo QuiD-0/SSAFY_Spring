@@ -20,6 +20,8 @@ public class UserDto {
     private String phone;
     @ApiModelProperty(value = "어드민 여부")
     private String admin;
+    @ApiModelProperty(value = "변경할 비밀번호, 평소에는 값안넣어도 괜찮습니다.")
+    private String newPassword;
 
     @Override
     public String toString() {

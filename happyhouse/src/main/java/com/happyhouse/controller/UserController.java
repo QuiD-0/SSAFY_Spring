@@ -6,6 +6,7 @@ import com.happyhouse.service.AdminService;
 import com.happyhouse.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.catalina.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private AdminService adminService;
     @Autowired
@@ -55,17 +55,25 @@ public class UserController {
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody UserDto userDto) throws Exception {
         UserDto user = userService.getUserById(userDto.getId());
+        JSONObject json = new JSONObject();
         if (user == null) {
-            JSONObject json = new JSONObject();
             json.put("message", "해당 ID의 유저가 존재하지 않습니다.");
             return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
-        } else {
-            userService.updateUser(user);
-            if(user.getAdmin().equals("Y")){
-                adminService.updateAdmin(user);
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
         }
+        UserDto checkedUser = userService.loginUser(userDto.getId(), userDto.getPassword());
+        if(checkedUser==null){
+            json.put("message", "잘못된 비밀번호 입니다.");
+            return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
+        }
+        if(userDto.getNewPassword()==null){
+            userDto.setNewPassword(userDto.getPassword());
+        }
+        userService.updateUser(userDto);
+        if (user.getAdmin().equals("Y")) {
+            adminService.updateAdmin(userDto);
+        }
+        json.put("message", "회원 정보 수정 성공");
+        return new ResponseEntity<>(json.toString(),HttpStatus.OK);
     }
 
     @ApiOperation(value = "해당 ID를 가진 유저 삭제")
@@ -78,7 +86,7 @@ public class UserController {
             return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
         } else {
             userService.deleteUser(id);
-            if(user.getAdmin().equals("Y")){
+            if (user.getAdmin().equals("Y")) {
                 adminService.deleteAdmin(user.getId());
             }
             return new ResponseEntity<>(HttpStatus.OK);
@@ -118,5 +126,39 @@ public class UserController {
     public ResponseEntity<?> logout() throws Exception {
         httpSession.invalidate();
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "ID찾기")
+    @PostMapping("/findid")
+    public ResponseEntity<?> findid(@RequestBody UserDto userDto) throws Exception {
+        String id = userService.findId(userDto.getName(),userDto.getPhone());
+        JSONObject json = new JSONObject();
+        if(id==null){
+            json.put("message", "일치하는 ID가 없습니다.");
+            return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
+        }
+        json.put("id", id);
+        return new ResponseEntity<>(json,HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "PW찾기")
+    @PostMapping("/findpw")
+    public ResponseEntity<?> findpw(@RequestBody UserDto userDto) throws Exception {
+        JSONObject json = new JSONObject();
+        if(!userService.checkPassword(userDto.getId(),userDto.getName())){
+            json.put("message", "ID와 name이 일치하지 않습니다.");
+            return new ResponseEntity<>(json.toString(), HttpStatus.BAD_REQUEST);
+        }
+        json.put("message","인증 완료");
+        return new ResponseEntity<>(json,HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "PW찾기")
+    @PutMapping("/findpw")
+    public ResponseEntity<?> changePW(@RequestBody UserDto userDto) throws Exception {
+        JSONObject json = new JSONObject();
+        userService.changePW(userDto);
+        json.put("message","비밀번호 재설정 완료");
+        return new ResponseEntity<>(json,HttpStatus.OK);
     }
 }

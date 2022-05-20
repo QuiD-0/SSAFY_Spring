@@ -23,7 +23,8 @@
     <update id="updateUser" parameterType="UserDto">
         update user
         set name  = #{name},
-            phone = #{phone}
+            phone = #{phone},
+            password = #{newPassword}
         where id = #{id}
     </update>
 
@@ -45,4 +46,23 @@
         values (#{id}, #{name})
     </insert>
 
+    <update id="changePassword" parameterType="map">
+        update user
+        set password  = #{password}
+        where id = #{id}
+    </update>
+
+    <select id="checkID" parameterType="map">
+        select id from user where name = #{name} and phone = #{phone}
+    </select>
+
+    <select id="checkPW" parameterType="map">
+        select count(*) from user where name = #{name} and id = #{id}
+    </select>
+
+    <update id="newPassword" parameterType="UserDto">
+        update user
+        set password = #{newPassword}
+        where id = #{id}
+    </update>
 </mapper>

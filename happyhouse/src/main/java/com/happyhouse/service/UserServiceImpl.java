@@ -5,6 +5,7 @@ import com.happyhouse.repository.UserMapper;
 import com.happyhouse.util.Encrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,17 +28,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void registerUser(UserDto user) throws Exception {
         user.setPassword(hashing(user.getPassword()));
         userMapper.registerUser(user);
     }
 
     @Override
+    @Transactional
     public void updateUser(UserDto user) throws Exception {
+        user.setNewPassword(hashing(user.getNewPassword()));
         userMapper.updateUser(user);
     }
 
     @Override
+    @Transactional
     public void deleteUser(String id) throws Exception {
         userMapper.deleteUser(id);
     }
@@ -49,6 +54,29 @@ public class UserServiceImpl implements UserService {
         password = hashing(password);
         userMap.put("password", password);
         return userMapper.loginUser(userMap);
+    }
+
+    @Override
+    public String findId(String name, String phone) {
+        Map<String, String> userMap = new HashMap<>();
+        userMap.put("name", name);
+        userMap.put("phone", phone);
+        return userMapper.checkID(userMap);
+    }
+
+    @Override
+    public boolean checkPassword(String id, String name) {
+        Map<String, String> userMap = new HashMap<>();
+        userMap.put("name", name);
+        userMap.put("id", id);
+        return (userMapper.checkPW(userMap)==1)?true:false;
+    }
+
+
+    @Override
+    public void changePW(UserDto userDto) {
+        userDto.setNewPassword(hashing(userDto.getNewPassword()));
+        userMapper.newPassword(userDto);
     }
 
     public String hashing(String word) {

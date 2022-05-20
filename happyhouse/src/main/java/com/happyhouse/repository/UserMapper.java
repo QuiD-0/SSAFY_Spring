@@ -21,4 +21,12 @@ public interface UserMapper {
     UserDto loginUser(Map<String, String> userInfo);
 
     void registerAdmin(Map<String, String> adminMap);
+
+    void changePassword(Map<String, String> userMap);
+
+    String checkID(Map<String, String> userMap);
+
+    int checkPW(Map<String, String> userMap);
+
+    void newPassword(UserDto userDto);
 }

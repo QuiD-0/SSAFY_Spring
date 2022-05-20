@@ -16,4 +16,10 @@ public interface UserService {
     void deleteUser(String id) throws Exception;
 
     UserDto loginUser(String id, String password);
+
+    String findId(String name,String phone);
+
+    boolean checkPassword(String id, String name);
+
+    void changePW(UserDto userDto);
 }
