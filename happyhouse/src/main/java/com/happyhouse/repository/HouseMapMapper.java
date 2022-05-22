@@ -45,4 +45,8 @@ public interface HouseMapMapper {
     ArrayList<HouseInfoDto> findDongByNamePaging(HashMap map);
 
     ArrayList<HouseInfoDto> findAPTByNamePaging(HashMap map);
+
+    ArrayList<HouseInfoDto> getDealInfoByApt(String name);
+
+    ArrayList<HouseInfoDto> getDealInfoByDong(String name);
 }

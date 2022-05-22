@@ -26,54 +26,54 @@ public class HouseMapController {
     private final Logger logger = LoggerFactory.getLogger(HouseMapController.class);
 
     @Autowired
-    private HouseMapService haHouseMapService;
+    private HouseMapService HouseMapService;
 
     @ApiOperation(value = "시, 도를 반환")
     @GetMapping("/sido")
     public ResponseEntity<List<SidoGugunCodeDto>> sido() throws Exception {
-        logger.debug("sido : {}", haHouseMapService.getSido());
-        return new ResponseEntity<List<SidoGugunCodeDto>>(haHouseMapService.getSido(), HttpStatus.OK);
+        logger.debug("sido : {}", HouseMapService.getSido());
+        return new ResponseEntity<List<SidoGugunCodeDto>>(HouseMapService.getSido(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "구군 검색")
     @GetMapping("/gugun/{sido}")
     public ResponseEntity<List<SidoGugunCodeDto>> gugun(@PathVariable(name = "sido") String sido) throws Exception {
-        return new ResponseEntity<List<SidoGugunCodeDto>>(haHouseMapService.getGugunInSido(sido), HttpStatus.OK);
+        return new ResponseEntity<List<SidoGugunCodeDto>>(HouseMapService.getGugunInSido(sido), HttpStatus.OK);
     }
 
     @ApiOperation(value = "동 검색")
     @GetMapping("/dong/{gugun}")
     public ResponseEntity<List<HouseInfoDto>> dong(@PathVariable(name = "gugun") String gugun) throws Exception {
-        return new ResponseEntity<List<HouseInfoDto>>(haHouseMapService.getDongInGugun(gugun), HttpStatus.OK);
+        return new ResponseEntity<List<HouseInfoDto>>(HouseMapService.getDongInGugun(gugun), HttpStatus.OK);
     }
 
     @ApiOperation(value = "아파트 검색")
     @GetMapping("/apt/{dong}")
     public ResponseEntity<List<HouseInfoDto>> apt(@PathVariable(name = "dong") String dong) throws Exception {
-        return new ResponseEntity<List<HouseInfoDto>>(haHouseMapService.getAptInDong(dong), HttpStatus.OK);
+        return new ResponseEntity<List<HouseInfoDto>>(HouseMapService.getAptInDong(dong), HttpStatus.OK);
     }
 
     @ApiOperation(value = "모든 거래정보 검색")
     @GetMapping("/{page}")
     public ResponseEntity<HashMap> all(@PathVariable(name = "page") int page, HttpServletRequest request) {
         HashMap map = new HashMap();
-        map.put("item", haHouseMapService.getAllHouseDeal((page - 1) * 5));
-        map.put("maxPage", (haHouseMapService.getAllHouseDealCount() - 1) / 5 + 1);
+        map.put("item", HouseMapService.getAllHouseDeal((page - 1) * 5));
+        map.put("maxPage", (HouseMapService.getAllHouseDealCount() - 1) / 5 + 1);
         return new ResponseEntity<HashMap>(map, HttpStatus.OK);
     }
 
     @ApiOperation(value = "거래 번호 검색")
     @GetMapping("/deal/{no}")
     public ResponseEntity<HouseInfoDto> aptByNo(@PathVariable(name = "no") String no) {
-        return new ResponseEntity<HouseInfoDto>(haHouseMapService.getHouseDealByNo(no), HttpStatus.OK);
+        return new ResponseEntity<HouseInfoDto>(HouseMapService.getHouseDealByNo(no), HttpStatus.OK);
     }
 
     @ApiOperation(value = "아파트로 코드 검색")
     @GetMapping("/aptcode/{code}/{page}")
     public ResponseEntity<HashMap> aptByCode(@PathVariable(name = "code") String code, @PathVariable(name = "page") int page) {
         HashMap map = new HashMap();
-        map.put("item", haHouseMapService.getAPTByCode(code, (page - 1) * 5));
-        map.put("maxPage", (haHouseMapService.getAPTByCodeCount(code) - 1) / 5 + 1);
+        map.put("item", HouseMapService.getAPTByCode(code, (page - 1) * 5));
+        map.put("maxPage", (HouseMapService.getAPTByCodeCount(code) - 1) / 5 + 1);
         return new ResponseEntity<HashMap>(map, HttpStatus.OK);
     }
 
@@ -81,8 +81,8 @@ public class HouseMapController {
     @GetMapping("/dongcode/{code}/{page}")
     public ResponseEntity<HashMap> dongByCode(@PathVariable(name = "code") String code, @PathVariable(name = "page") int page) {
         HashMap map = new HashMap();
-        map.put("item", haHouseMapService.getDongByCode(code, (page - 1) * 5));
-        map.put("maxPage", (haHouseMapService.getDongByCodeCount(code) - 1) / 5 + 1);
+        map.put("item", HouseMapService.getDongByCode(code, (page - 1) * 5));
+        map.put("maxPage", (HouseMapService.getDongByCodeCount(code) - 1) / 5 + 1);
         return new ResponseEntity<HashMap>(map, HttpStatus.OK);
     }
 
@@ -90,8 +90,8 @@ public class HouseMapController {
     @GetMapping("/aptname/{name}/{page}")
     public ResponseEntity<HashMap> aptByName(@PathVariable(name = "name") String name, @PathVariable(name = "page") int page) {
         HashMap map = new HashMap();
-        map.put("item", haHouseMapService.getAPTByNamePaging(name, (page - 1) * 5));
-        map.put("maxPage", (haHouseMapService.getAPTByNameCount(name) - 1) / 5 + 1);
+        map.put("item", HouseMapService.getAPTByNamePaging(name, (page - 1) * 5));
+        map.put("maxPage", (HouseMapService.getAPTByNameCount(name) - 1) / 5 + 1);
         return new ResponseEntity<HashMap>(map, HttpStatus.OK);
     }
 
@@ -99,22 +99,37 @@ public class HouseMapController {
     @GetMapping("/dongname/{name}/{page}")
     public ResponseEntity<HashMap> dongByNamePaging(@PathVariable(name = "name") String name, @PathVariable(name = "page") int page) {
         HashMap map = new HashMap();
-        map.put("item", haHouseMapService.getDongByNamePaging(name, (page - 1) * 5));
-        map.put("maxPage", (haHouseMapService.getDongByNameCount(name) - 1) / 5 + 1);
+        map.put("item", HouseMapService.getDongByNamePaging(name, (page - 1) * 5));
+        map.put("maxPage", (HouseMapService.getDongByNameCount(name) - 1) / 5 + 1);
         return new ResponseEntity<HashMap>(map, HttpStatus.OK);
     }
 
     @ApiOperation(value = "동 이름으로 검색")
     @GetMapping("/dongname/{name}")
     public ResponseEntity<?> dongByName(@PathVariable(name = "name") String name) {
-        ArrayList<HouseInfoDto> list = haHouseMapService.getDongByName(name);
+        ArrayList<HouseInfoDto> list = HouseMapService.getDongByName(name);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @ApiOperation(value = "아파트 이름으로 검색")
     @GetMapping("/aptname/{name}")
     public ResponseEntity<?> aptByName(@PathVariable(name = "name") String name) {
-        ArrayList<HouseInfoDto> list = haHouseMapService.getAPTByName(name);
+        ArrayList<HouseInfoDto> list = HouseMapService.getAPTByName(name);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
+    @ApiOperation(value = "아파트 이름으로 검색")
+    @GetMapping("/deal/apt/{name}")
+    public ResponseEntity<?> dealInfoByApt(@PathVariable(name = "name") String name) {
+        ArrayList<HouseInfoDto> list = HouseMapService.getDealInfoByApt(name);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "아파트 이름으로 검색")
+    @GetMapping("/deal/dong/{name}")
+    public ResponseEntity<?> dealInfoByDong(@PathVariable(name = "name") String name) {
+        ArrayList<HouseInfoDto> list = HouseMapService.getDealInfoByDong(name);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
 }

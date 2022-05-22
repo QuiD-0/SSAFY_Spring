@@ -114,7 +114,8 @@
     </select>
     <select id="getAPTByCodeCount" resultType="int" parameterType="String">
         SELECT count(distinct h.aptCode)
-        FROM housedeal join houseinfo h using(aptcode)
+        FROM housedeal
+                 join houseinfo h using (aptcode)
         where aptCode = #{code}
     </select>
 
@@ -141,7 +142,8 @@
 
     <select id="getDongByCodeCount" resultType="int" parameterType="String">
         SELECT count(distinct h.aptCode)
-        FROM housedeal join houseinfo h using(aptcode)
+        FROM housedeal
+                 join houseinfo h using (aptcode)
         where dongCode = #{code}
     </select>
     <select id="findAPTByNamePaging" resultType="houseInfoDto" parameterType="map">
@@ -166,7 +168,8 @@
     </select>
     <select id="getAPTByNameCount" resultType="int" parameterType="String">
         SELECT count(distinct h.aptCode)
-        FROM housedeal join houseinfo h using(aptcode)
+        FROM housedeal
+                 join houseinfo h using (aptcode)
         where aptName like concat('%', #{name}, '%')
     </select>
     <select id="findDongByNamePaging" resultType="houseInfoDto" parameterType="map">
@@ -191,7 +194,8 @@
     </select>
     <select id="getDongByNameCount" resultType="int" parameterType="String">
         SELECT count(distinct h.aptCode)
-        FROM housedeal join houseinfo h using(aptcode)
+        FROM housedeal
+                 join houseinfo h using (aptcode)
         where dongName like concat('%', #{name}, '%')
     </select>
     <select id="findDongByName" resultType="houseInfoDto" parameterType="String">
@@ -231,5 +235,30 @@
             left join guguncode gu
             on left (h.dongcode,5) = left (gu.guguncode,5)
         where h.aptName like concat('%', #{name}, '%')
+    </select>
+
+    <select id="getDealInfoByApt" resultType="houseInfoDto">
+        select *, (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        from houseinfo h
+                 join (select *
+                       from housedeal
+                       where aptCode = any (SELECT distinct aptCode
+                                            FROM happyhouse.houseinfo
+                                                     join housedeal using (aptcode)
+                                            where aptName like concat('%', #{name}, '%'))) a using (aptCode)
+                 left join sidocode si on left (h.dongcode, 2) = left (si.sidocode, 2) left join guguncode gu
+        on left (h.dongcode,5) = left (gu.guguncode,5) order by no;
+    </select>
+
+    <select id="getDealInfoByDong" resultType="houseInfoDto">
+        select *, (select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+        from houseinfo h
+                 join (select *
+                       from housedeal
+                       where aptCode = any
+                             (SELECT aptCode FROM happyhouse.houseinfo where dongName like concat('%', #{name}, '%'))) a
+                      using (aptCode)
+                 left join sidocode si on left (h.dongcode, 2) = left (si.sidocode, 2) left join guguncode gu
+        on left (h.dongcode,5) = left (gu.guguncode,5) order by no;
     </select>
 </mapper>

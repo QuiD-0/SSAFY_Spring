@@ -41,4 +41,8 @@ public interface HouseMapService {
     int getAPTByNameCount(String name);
 
     int getDongByNameCount(String name);
+
+    ArrayList<HouseInfoDto> getDealInfoByApt(String name);
+
+    ArrayList<HouseInfoDto> getDealInfoByDong(String name);
 }

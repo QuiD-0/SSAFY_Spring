@@ -126,6 +126,18 @@ public class HouseMapServiceImpl implements HouseMapService {
         return houseMapMapper.getDongByNameCount(name);
     }
 
+    @Override
+    public ArrayList<HouseInfoDto> getDealInfoByApt(String name) {
+        name = EngToKor(name);
+        return houseMapMapper.getDealInfoByApt(name);
+    }
+
+    @Override
+    public ArrayList<HouseInfoDto> getDealInfoByDong(String name) {
+        name = EngToKor(name);
+        return houseMapMapper.getDealInfoByDong(name);
+    }
+
 
     public String EngToKor(String word) {
         if (Pattern.matches("^[0-9a-zA-Z]*$", word)) {
