@@ -3,19 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.happyhouse.repository.QnaMapper">
+<mapper namespace="com.happyhouse.qna.repository.QnaMapper">
 
-    <select id="selectAll" resultType="com.happyhouse.domain.Qna">
+    <select id="selectAll" resultType="com.happyhouse.qna.domain.Qna">
         SELECT * FROM qna order by qna_id
     </select>
 
-    <select id="selectOne" resultType="com.happyhouse.domain.Qna" parameterType="int">
+    <select id="selectOne" resultType="com.happyhouse.qna.domain.Qna" parameterType="int">
         SELECT * FROM qna
         where qna_id = #{qna_id}
 
     </select>
 
-    <insert id="insert" parameterType="com.happyhouse.domain.Qna">
+    <insert id="insert" parameterType="com.happyhouse.qna.domain.Qna">
         INSERT INTO qna (`user_id`,`name`, `title`, `content`) VALUES (#{user_id},#{name}, #{title}, #{content});
     </insert>
 
@@ -25,11 +25,11 @@
         where qna_id = #{qna_id}
     </delete>
 
-    <update id="update" parameterType="com.happyhouse.domain.Qna">
+    <update id="update" parameterType="com.happyhouse.qna.domain.Qna">
         update qna set content = #{content},title = #{title} where qna_id =  #{qna_id}
     </update>
 
-    <select id="findQnaByWord" parameterType="String" resultType="com.happyhouse.domain.Qna">
+    <select id="findQnaByWord" parameterType="String" resultType="com.happyhouse.qna.domain.Qna">
         SELECT * FROM qna where title like concat('%', #{word}, '%')
         order by qna_id asc
     </select>
