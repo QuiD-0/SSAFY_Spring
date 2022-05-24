@@ -53,6 +53,7 @@ public class WeatherServiceImpl implements WeatherService {
         if (temperature.equals("")) {
             address = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=서울날씨";
             HTMLData = Jsoup.connect(address).timeout(5000).get();
+            query="서울";
             document = HTMLData.select("section.sc_new.cs_weather_new._cs_weather > div._tab_flicking > div.content_wrap > div.open > div:nth-child(1) > div > div.weather_info");
             summary = document.select("div.temperature_info > p").text().split(" ");
             detailInfo = document.select("div.temperature_info > dl").text().split(" ");
@@ -63,6 +64,6 @@ public class WeatherServiceImpl implements WeatherService {
         String humidity = detailInfo[1];
         String wind = detailInfo[2];
         String windSpeed = detailInfo[3];
-        return new Weather(temperature, delta, weather, humidity, wind, windSpeed);
+        return new Weather(query,temperature, delta, weather, humidity, wind, windSpeed);
     }
 }

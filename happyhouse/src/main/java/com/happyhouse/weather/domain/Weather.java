@@ -12,6 +12,7 @@ import lombok.ToString;
 @ToString
 public class Weather {
 
+    String location;
     String temperature;
     String delta;
     String weather;
