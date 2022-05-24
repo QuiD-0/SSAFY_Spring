@@ -13,7 +13,10 @@ import lombok.ToString;
 public class Weather {
 
     String temperature;
-    String summary;
-    String detailInfo;
+    String delta;
+    String weather;
+    String humidity;
+    String wind;
+    String windSpeed;
 
 }
