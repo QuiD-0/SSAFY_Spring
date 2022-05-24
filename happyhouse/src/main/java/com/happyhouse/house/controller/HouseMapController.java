@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,15 +46,15 @@ public class HouseMapController {
         return new ResponseEntity<List<HouseInfoDto>>(HouseMapService.getDongInGugun(gugun), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "아파트 검색")
-    @GetMapping("/apt/{dong}")
-    public ResponseEntity<List<HouseInfoDto>> apt(@PathVariable(name = "dong") String dong) throws Exception {
-        return new ResponseEntity<List<HouseInfoDto>>(HouseMapService.getAptInDong(dong), HttpStatus.OK);
+    @ApiOperation(value = "모든 지역구 리턴")
+    @GetMapping
+    public ResponseEntity<ArrayList<SidoGugunCodeDto>> BaseAddress(){
+        return new ResponseEntity<ArrayList<SidoGugunCodeDto>>(HouseMapService.getBaseAddress(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "모든 거래정보 검색")
     @GetMapping("/{page}")
-    public ResponseEntity<HashMap> all(@PathVariable(name = "page") int page, HttpServletRequest request) {
+    public ResponseEntity<HashMap> all(@PathVariable(name = "page") int page) {
         HashMap map = new HashMap();
         map.put("item", HouseMapService.getAllHouseDeal((page - 1) * 5));
         map.put("maxPage", (HouseMapService.getAllHouseDealCount() - 1) / 5 + 1);

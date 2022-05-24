@@ -14,8 +14,6 @@ public interface HouseMapService {
 
     List<HouseInfoDto> getDongInGugun(String gugun) throws Exception;
 
-    List<HouseInfoDto> getAptInDong(String dong) throws Exception;
-
     ArrayList<HouseInfoDto> getAllHouseDeal(int page);
 
     HouseInfoDto getHouseDealByNo(String no);
@@ -45,4 +43,6 @@ public interface HouseMapService {
     ArrayList<HouseInfoDto> getDealInfoByApt(String name);
 
     ArrayList<HouseInfoDto> getDealInfoByDong(String name);
+
+    ArrayList<SidoGugunCodeDto> getBaseAddress();
 }

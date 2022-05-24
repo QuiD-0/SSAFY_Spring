@@ -18,8 +18,6 @@ public interface HouseMapMapper {
 
     List<HouseInfoDto> getDongInGugun(String gugun) throws SQLException;
 
-    List<HouseInfoDto> getAptInDong(String dong) throws SQLException;
-
     ArrayList<HouseInfoDto> findAllHouseDeal(int page);
 
     HouseInfoDto findHouseDealByNo(String no);
@@ -49,4 +47,6 @@ public interface HouseMapMapper {
     ArrayList<HouseInfoDto> getDealInfoByApt(String name);
 
     ArrayList<HouseInfoDto> getDealInfoByDong(String name);
+
+    ArrayList<SidoGugunCodeDto> getBase();
 }

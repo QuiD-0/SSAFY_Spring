@@ -33,10 +33,9 @@ public class HouseMapServiceImpl implements HouseMapService {
     }
 
     @Override
-    public List<HouseInfoDto> getAptInDong(String dong) throws Exception {
-        return houseMapMapper.getAptInDong(dong);
+    public ArrayList<SidoGugunCodeDto> getBaseAddress() {
+        return houseMapMapper.getBase();
     }
-
     @Override
     public ArrayList<HouseInfoDto> getAllHouseDeal(int page) {
         return houseMapMapper.findAllHouseDeal(page);
@@ -130,6 +129,7 @@ public class HouseMapServiceImpl implements HouseMapService {
         name = Translate.EngToKor(name);
         return houseMapMapper.getDealInfoByDong(name);
     }
+
 
 
 }

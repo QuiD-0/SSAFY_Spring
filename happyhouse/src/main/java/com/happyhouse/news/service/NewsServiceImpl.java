@@ -1,6 +1,7 @@
 package com.happyhouse.news.service;
 
 import com.happyhouse.house.domain.HouseInfoDto;
+import com.happyhouse.house.domain.SidoGugunCodeDto;
 import com.happyhouse.news.domain.News;
 import com.happyhouse.house.service.HouseMapService;
 import com.happyhouse.util.Translate;
@@ -42,10 +43,21 @@ public class NewsServiceImpl implements NewsService{
     @Override
     public String getDongbyQuery(String query) {
         query = Translate.EngToKor(query);
+        //아파트인 경우
         ArrayList<HouseInfoDto> apts = houseMapService.getAPTByName(query);
-        if(apts.size()!=0){
+        ArrayList<SidoGugunCodeDto> base = houseMapService.getBaseAddress();
+        if (apts.size() != 0) {
             HouseInfoDto apt = apts.get(0);
             query = apt.getGugunName();
+        }
+        for (SidoGugunCodeDto loc :base) {
+            if(loc.getGugunName().indexOf(query)==0){
+                query = loc.getGugunName();
+                break;
+            } else if (loc.getDongName().indexOf(query)==0) {
+                query = loc.getDongName();
+                break;
+            }
         }
         return query;
     }
