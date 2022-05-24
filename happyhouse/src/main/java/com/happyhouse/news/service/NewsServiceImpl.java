@@ -37,6 +37,9 @@ public class NewsServiceImpl implements NewsService{
             if (URL.equals("")) continue;
             news.add(new News(URL, TITLE, description, publisher, time));
         }
+        if(news.isEmpty()){
+            return getNews("서울시");
+        }
         return news;
     }
 
