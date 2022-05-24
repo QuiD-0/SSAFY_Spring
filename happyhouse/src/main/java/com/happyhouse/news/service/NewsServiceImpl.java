@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Service
 public class NewsServiceImpl implements NewsService{
@@ -22,7 +23,7 @@ public class NewsServiceImpl implements NewsService{
     HouseMapService houseMapService;
 
     @Override
-    public ArrayList<News> getNews(String query) throws IOException {
+    public HashMap getNews(String query) throws IOException {
         ArrayList<News> news = new ArrayList<>();
         String address = "https://search.naver.com/search.naver?where=news&query=" + query + "&sm=tab_opt&sort=0&photo=3&field=0&pd=1&ds=&de=&docid=&related=0&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so%3Ar%2Cp%3A1w&is_sug_officeid=0";
         Document HTMLData = Jsoup.connect(address).timeout(5000).get();
@@ -40,7 +41,10 @@ public class NewsServiceImpl implements NewsService{
         if(news.isEmpty()){
             return getNews("서울시");
         }
-        return news;
+        HashMap map = new HashMap();
+        map.put("location",query);
+        map.put("news",news);
+        return map;
     }
 
     @Override

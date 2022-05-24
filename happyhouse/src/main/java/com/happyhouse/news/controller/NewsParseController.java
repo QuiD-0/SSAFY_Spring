@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -26,9 +27,9 @@ public class NewsParseController {
 
     @GetMapping("/{name}")
     @ApiOperation(value = "뉴스 리스트",notes = "해당하는 아파트명이 있으면 해당 아파트의 지역 검색, 없다면 바로 지역검색", response = List.class)
-    public ResponseEntity<ArrayList<News>> parseAPT(@PathVariable(name = "name") String query) throws IOException {
+    public ResponseEntity<HashMap> parseAPT(@PathVariable(name = "name") String query) throws IOException {
         query = newsService.getDongbyQuery(query);
-        ArrayList<News> news = newsService.getNews(query);
+        HashMap news = newsService.getNews(query);
         return new ResponseEntity<>(news, HttpStatus.OK);
     }
 }
