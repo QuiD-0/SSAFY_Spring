@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
@@ -61,9 +62,9 @@ public class WeatherServiceImpl implements WeatherService {
         }
         String delta = summary[0] + " " + summary[1] + " " + summary[2];
         String weather = summary[3];
-        String humidity = detailInfo[1];
-        String wind = detailInfo[2];
-        String windSpeed = detailInfo[3];
+        String humidity = detailInfo[3];
+        String wind = detailInfo[4];
+        String windSpeed = detailInfo[5];
         return new Weather(query,temperature, delta, weather, humidity, wind, windSpeed);
     }
 }

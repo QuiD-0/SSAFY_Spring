@@ -8,7 +8,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
 public class Weather {
 
@@ -20,4 +19,13 @@ public class Weather {
     String wind;
     String windSpeed;
 
+    public Weather(String location, String temperature, String delta, String weather, String humidity, String wind, String windSpeed) {
+        this.location = location;
+        this.temperature = temperature;
+        this.delta = delta;
+        this.weather = weather;
+        this.humidity = humidity;
+        this.wind = wind;
+        this.windSpeed = windSpeed;
+    }
 }
