@@ -124,7 +124,7 @@ public class HouseMapController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "아파트 이름으로 검색")
+    @ApiOperation(value = "동 이름으로 검색")
     @GetMapping("/deal/dong/{name}")
     public ResponseEntity<?> dealInfoByDong(@PathVariable(name = "name") String name) {
         ArrayList<HouseInfoDto> list = HouseMapService.getDealInfoByDong(name);

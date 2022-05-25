@@ -82,11 +82,13 @@ public class HouseMapServiceImpl implements HouseMapService {
 
     @Override
     public ArrayList<HouseInfoDto> getAPTByName(String name) {
+        name = Translate.EngToKor(name);
         return houseMapMapper.findAPTByName(name);
     }
 
     @Override
     public ArrayList<HouseInfoDto> getDongByName(String name) {
+        name = Translate.EngToKor(name);
         return houseMapMapper.findDongByName(name);
     }
 
