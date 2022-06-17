@@ -30,8 +30,8 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public void randomInsert() {
-		int leftLimit = 97; // letter 'a'
-		int rightLimit = 122; // letter 'z'
+		int leftLimit = 65; // letter 'a'
+		int rightLimit = 90; // letter 'z'
 		int targetStringLength = 10;
 		Random random = new Random();
 		String generatedString = random.ints(leftLimit, rightLimit + 1)
