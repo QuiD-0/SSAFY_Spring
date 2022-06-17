@@ -20,43 +20,56 @@ public class CustomerRestController {
     CustomerService customerService;
 
     @PostMapping
-    public void insert(@RequestBody Customer customer){
+    public void insert(@RequestBody Customer customer) {
         customerService.insert(customer);
     }
 
     @GetMapping
-    public ResponseEntity<List<Customer>> showAll(){
-        List<Customer> list =customerService.selectAll();
+    public ResponseEntity<List<Customer>> showAll() {
+        List<Customer> list = customerService.selectAll();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
     @GetMapping("/order")
-    public ResponseEntity<List<Customer>> showAllOrderByName(){
-        List<Customer> list =customerService.selectAllOrderByName();
+    public ResponseEntity<List<Customer>> showAllOrderByName() {
+        List<Customer> list = customerService.selectAllOrderByName();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
+    //pk값 만큼 Customer 랜덤 생성
+    @GetMapping("/insert/{pk}")
+    public ResponseEntity insertRandom(@PathVariable String pk) {
+        try {
+            for (int i = 0; i < Integer.parseInt(pk); i++) {
+                customerService.randomInsert();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
     @GetMapping("/{pk}")
-    public Customer showOne(@PathVariable(name = "pk") String pk){
+    public Customer showOne(@PathVariable(name = "pk") String pk) {
         return customerService.selectOne(pk);
     }
 
     @PutMapping
-    public int updateUser(@RequestBody Customer customer){
+    public int updateUser(@RequestBody Customer customer) {
         return customerService.update(customer);
     }
 
     @DeleteMapping("/{pk}")
-    public void deleteCustomer(@PathVariable(name = "pk") String pk){
+    public void deleteCustomer(@PathVariable(name = "pk") String pk) {
         customerService.delete(pk);
     }
 
     @GetMapping("/addr/{region}")
-    public List<Customer> addrSearch(@PathVariable(name = "region") String region){
+    public List<Customer> addrSearch(@PathVariable(name = "region") String region) {
         return customerService.findByAddress(region);
     }
 
-	
 
 }
 

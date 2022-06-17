@@ -16,7 +16,9 @@ public interface CustomerService {
 	
 	public int delete(String num);
 	public List<Customer> findByAddress(String address);
-	public int update(Customer c);	
+	public int update(Customer c);
+
+	void randomInsert();
 }
 
 

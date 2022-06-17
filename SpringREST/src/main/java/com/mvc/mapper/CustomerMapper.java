@@ -16,7 +16,7 @@ public interface CustomerMapper {
     @Select("select * from customer where num = #{num}")
     public Customer selectOne(@Param("num") String num);
 
-    @Insert("insert into customer values(#{num}, #{name}, #{address}) ")
+    @Insert("insert into customer(name,address) values(#{name}, #{address})")
     public int insert(@Param("c") Customer c);
 
 	@Delete("delete from customer where num = #{num}")
