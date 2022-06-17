@@ -10,6 +10,8 @@ public interface CustomerMapper {
 
     @Select(" select * from customer")
     public List<Customer> selectAll();
+    @Select(" select * from customer order by name")
+    List<Customer> selectAllOrderByName();
 
     @Select("select * from customer where num = #{num}")
     public Customer selectOne(@Param("num") String num);
@@ -25,6 +27,7 @@ public interface CustomerMapper {
 
 	@Update("delete from customer where num = #{num}")
     public int update(@Param("c") Customer c);
+
 
 }
 

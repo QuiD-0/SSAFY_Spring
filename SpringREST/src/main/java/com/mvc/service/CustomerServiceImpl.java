@@ -1,5 +1,7 @@
 package com.mvc.service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,15 @@ public class CustomerServiceImpl implements CustomerService{
 	CustomerMapper mapper;
 	
 	@Override
-	public List<Customer> selectAll() {		
-		return mapper.selectAll();
+	public List<Customer> selectAll() {
+		List<Customer> list = mapper.selectAll();
+		Collections.sort(list);
+		return list;
+	}
+
+	@Override
+	public List<Customer> selectAllOrderByName() {
+		return mapper.selectAllOrderByName();
 	}
 
 	@Override

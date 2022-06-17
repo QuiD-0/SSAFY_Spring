@@ -3,6 +3,7 @@ package com.rest.controller;
 
 import com.mvc.service.CustomerService;
 import com.mvc.vo.Customer;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,12 @@ public class CustomerRestController {
     @GetMapping
     public ResponseEntity<List<Customer>> showAll(){
         List<Customer> list =customerService.selectAll();
+        return new ResponseEntity(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/order")
+    public ResponseEntity<List<Customer>> showAllOrderByName(){
+        List<Customer> list =customerService.selectAllOrderByName();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 

@@ -9,6 +9,8 @@ import com.mvc.vo.Customer;
 //client(CustomerApp.java)
 public interface CustomerService {
 	public List<Customer> selectAll();
+
+	public List<Customer> selectAllOrderByName();
 	public Customer selectOne(String num);
 	public int insert(Customer c);	
 	

@@ -2,12 +2,11 @@ package com.mvc.vo;
 
 import lombok.*;
 
-//vo(value object):customer
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Customer implements Comparable<Customer>{
 
     private String num;
 
@@ -16,4 +15,8 @@ public class Customer {
     private String address;
 
 
+    @Override
+    public int compareTo(Customer o) {
+        return this.name.compareTo(o.name);
+    }
 }
